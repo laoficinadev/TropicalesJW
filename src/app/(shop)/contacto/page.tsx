@@ -1,0 +1,205 @@
+"use client";
+
+import { useState } from "react";
+import { Mail, Phone, MapPin, Send, CheckCircle } from "lucide-react";
+import toast from "react-hot-toast";
+
+export default function ContactoPage() {
+  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setSubmitting(true);
+
+    const form = new FormData(e.currentTarget);
+    const payload = {
+      name: form.get("name"),
+      email: form.get("email"),
+      phone: form.get("phone") || "",
+      subject: form.get("subject"),
+      message: form.get("message"),
+    };
+
+    try {
+      const res = await fetch("/api/contacto", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) throw new Error();
+      setSubmitted(true);
+      toast.success("Mensaje enviado con éxito");
+    } catch {
+      toast.error("Error al enviar el mensaje. Intenta de nuevo.");
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  if (submitted) {
+    return (
+      <div className="mx-auto max-w-2xl px-4 py-20 sm:px-6 lg:px-8">
+        <div className="text-center">
+          <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-emerald-50">
+            <CheckCircle className="h-10 w-10 text-emerald-500" />
+          </div>
+          <h1 className="text-3xl font-bold text-gray-900">
+            ¡Mensaje Enviado!
+          </h1>
+          <p className="mt-2 text-gray-500">
+            Gracias por contactarnos. Te responderemos a la brevedad posible.
+          </p>
+          <button
+            onClick={() => setSubmitted(false)}
+            className="mt-8 inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700"
+          >
+            Enviar otro mensaje
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <div className="mb-10 text-center">
+        <h1 className="text-3xl font-bold text-gray-900">Contacto</h1>
+        <p className="mt-2 text-gray-500">
+          Estamos para servirte. Escríbenos y te responderemos pronto.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
+        <div className="space-y-8 lg:col-span-1">
+          {[
+            {
+              icon: Mail,
+              title: "Email",
+              content: "info@tropicalesjw.com",
+            },
+            {
+              icon: Phone,
+              title: "Teléfono",
+              content: "+506 8888-8888",
+            },
+            {
+              icon: MapPin,
+              title: "Ubicación",
+              content: "San José, Costa Rica",
+            },
+          ].map((item) => (
+            <div key={item.title} className="flex items-start gap-4">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                <item.icon className="h-5 w-5" />
+              </div>
+              <div>
+                <h3 className="text-sm font-medium text-gray-900">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-gray-500">{item.content}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="lg:col-span-2">
+          <form
+            onSubmit={handleSubmit}
+            className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8"
+          >
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <div>
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Nombre completo *
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  required
+                  className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Correo electrónico *
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                />
+              </div>
+            </div>
+
+            <div className="mt-4">
+              <label
+                htmlFor="phone"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Teléfono
+              </label>
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+              />
+            </div>
+
+            <div className="mt-4">
+              <label
+                htmlFor="subject"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Asunto *
+              </label>
+              <input
+                id="subject"
+                name="subject"
+                type="text"
+                required
+                className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+              />
+            </div>
+
+            <div className="mt-4">
+              <label
+                htmlFor="message"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Mensaje *
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                required
+                rows={5}
+                className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+              />
+            </div>
+
+            <button
+              type="submit"
+              disabled={submitting}
+              className="mt-6 inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 disabled:opacity-50"
+            >
+              <Send className="h-4 w-4" />
+              {submitting ? "Enviando..." : "Enviar Mensaje"}
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}

@@ -1,0 +1,9 @@
+{
+  "framework": "nextjs",
+  "buildCommand": "npm run vercel-build",
+  "outputDirectory": ".next",
+  "installCommand": "npm install",
+  "env": {
+    "PRISMA_SCHEMA": "prisma/schema.postgres.prisma"
+  }
+}
