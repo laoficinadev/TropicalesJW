@@ -61,7 +61,7 @@ export default async function AdminPedidosPage() {
                   )}
                 </div>
                 <p className="text-lg font-bold text-gray-900">
-                  {formatPrice(order.total)}
+                  {formatPrice(Number(order.total))}
                 </p>
               </div>
 
@@ -81,7 +81,7 @@ export default async function AdminPedidosPage() {
                         </span>
                       </div>
                       <span className="text-gray-600">
-                        {formatPrice(item.price * item.quantity)}
+                        {formatPrice(Number(item.price) * item.quantity)}
                       </span>
                     </div>
                   ))}

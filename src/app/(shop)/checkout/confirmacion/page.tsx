@@ -62,12 +62,12 @@ export default async function ConfirmacionPage({
                     {item.product.name}
                   </p>
                   <p className="text-xs text-gray-400">
-                    {formatPrice(item.price)} c/u
+                    {formatPrice(Number(item.price))} c/u
                   </p>
                 </div>
               </div>
               <p className="text-sm font-medium text-gray-900">
-                {formatPrice(item.price * item.quantity)}
+                {formatPrice(Number(item.price) * item.quantity)}
               </p>
             </div>
           ))}
@@ -76,7 +76,7 @@ export default async function ConfirmacionPage({
         <div className="mt-6 border-t border-gray-100 pt-4">
           <div className="flex justify-between text-lg font-bold text-gray-900">
             <span>Total</span>
-            <span>{formatPrice(order.total)}</span>
+            <span>{formatPrice(Number(order.total))}</span>
           </div>
         </div>
       </div>

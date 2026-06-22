@@ -3,7 +3,7 @@ export function cn(...inputs: (string | false | null | undefined)[]) {
 }
 
 export function formatPrice(price: number | string): string {
-  const num = typeof price === "string" ? parseFloat(price) : price;
+  const num = typeof price === "string" ? parseFloat(price) : Number(price);
   return new Intl.NumberFormat("es-CR", {
     style: "currency",
     currency: "CRC",
