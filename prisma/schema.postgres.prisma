@@ -31,7 +31,7 @@ model Product {
   name        String
   slug        String      @unique
   description String
-  price       Decimal     @db.Decimal(10, 2)
+  price       Float
   images      String      @default("[]")
   stock       Int         @default(0)
   published   Boolean     @default(false)
@@ -51,7 +51,7 @@ model Order {
   customerNotes   String?
   shippingAddress String?
   status          OrderStatus @default(PENDING)
-  total           Decimal     @db.Decimal(10, 2)
+  total           Float
   items           OrderItem[]
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @updatedAt
@@ -69,7 +69,7 @@ enum OrderStatus {
 model OrderItem {
   id        String   @id @default(cuid())
   quantity  Int
-  price     Decimal  @db.Decimal(10, 2)
+  price     Float
   productId String
   product   Product  @relation(fields: [productId], references: [id])
   orderId   String
