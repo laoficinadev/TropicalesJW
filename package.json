@@ -4,19 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npx prisma generate && next build",
-    "start": "next start",
+    "build": "prisma generate && next build",
+    "start": "node .next/standalone/server.js",
     "lint": "eslint",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
-    "db:push:prod": "prisma db push --schema=prisma/schema.postgres.prisma",
-    "db:generate:prod": "prisma generate --schema=prisma/schema.postgres.prisma",
     "db:migrate": "prisma migrate dev",
-    "db:migrate:prod": "prisma migrate deploy --schema=prisma/schema.postgres.prisma",
+    "db:migrate:deploy": "prisma migrate deploy",
     "db:seed": "prisma db seed",
-    "db:seed:prod": "prisma db seed --schema=prisma/schema.postgres.prisma",
-    "db:studio": "prisma studio",
-    "vercel-build": "prisma generate --schema=prisma/schema.postgres.prisma && next build"
+    "db:studio": "prisma studio"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
