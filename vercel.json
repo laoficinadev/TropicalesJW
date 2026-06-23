@@ -5,6 +5,9 @@
   "installCommand": "npm install",
   "env": {
     "PRISMA_SCHEMA": "prisma/schema.postgres.prisma"
+  },
+  "github": {
+    "silent": true
   }
 }
 
