@@ -26,7 +26,7 @@ export default async function AdminPage() {
       icon: MessageSquare,
       label: "Mensajes",
       value: "—",
-      href: "#",
+      href: "/admin/mensajes",
       color: "text-blue-600 bg-blue-50",
     },
   ];

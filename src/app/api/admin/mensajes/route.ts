@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { supabase } from "@/lib/supabase";
 import { auth } from "@/lib/auth";
 
 export async function GET() {
@@ -8,9 +8,10 @@ export async function GET() {
     return NextResponse.json({ error: "No autorizado" }, { status: 401 });
   }
 
-  const messages = await prisma.contactMessage.findMany({
-    orderBy: { createdAt: "desc" },
-  });
+  const { data: messages } = await supabase
+    .from("ContactMessage")
+    .select("*")
+    .order("createdAt", { ascending: false });
 
-  return NextResponse.json(messages);
+  return NextResponse.json(messages || []);
 }

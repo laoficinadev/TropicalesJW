@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { supabase } from "@/lib/supabase";
 
 export async function GET(
   _request: Request,
@@ -7,10 +7,11 @@ export async function GET(
 ) {
   const { slug } = await params;
 
-  const product = await prisma.product.findUnique({
-    where: { slug },
-    include: { category: true },
-  });
+  const { data: product } = await supabase
+    .from("Product")
+    .select("*, category:Category(*)")
+    .eq("slug", slug)
+    .single();
 
   if (!product) {
     return NextResponse.json(

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { supabase } from "@/lib/supabase";
 import { auth } from "@/lib/auth";
 
 export async function PUT(
@@ -15,9 +15,9 @@ export async function PUT(
 
   try {
     const body = await request.json();
-    const product = await prisma.product.update({
-      where: { id },
-      data: {
+    const { data: product, error } = await supabase
+      .from("Product")
+      .update({
         name: body.name,
         slug: body.slug,
         description: body.description,
@@ -27,8 +27,12 @@ export async function PUT(
         published: body.published ?? false,
         featured: body.featured ?? false,
         categoryId: body.categoryId || null,
-      },
-    });
+      })
+      .eq("id", id)
+      .select()
+      .single();
+
+    if (error) throw error;
     return NextResponse.json(product);
   } catch {
     return NextResponse.json(
@@ -50,7 +54,12 @@ export async function DELETE(
   const { id } = await params;
 
   try {
-    await prisma.product.delete({ where: { id } });
+    const { error } = await supabase
+      .from("Product")
+      .delete()
+      .eq("id", id);
+
+    if (error) throw error;
     return NextResponse.json({ message: "Producto eliminado" });
   } catch {
     return NextResponse.json(

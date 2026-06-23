@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { prisma } from "@/lib/prisma";
+import { supabase } from "@/lib/supabase";
 import { formatPrice } from "@/lib/utils";
 import { AddToCartButton } from "@/components/productos/AddToCartButton";
 
@@ -10,10 +10,11 @@ interface PageProps {
 export default async function ProductoDetailPage({ params }: PageProps) {
   const { slug } = await params;
 
-  const product = await prisma.product.findUnique({
-    where: { slug },
-    include: { category: true },
-  });
+  const { data: product } = await supabase
+    .from("Product")
+    .select("*, category:Category(*)")
+    .eq("slug", slug)
+    .single();
 
   if (!product || !product.published) notFound();
 

@@ -1,15 +1,16 @@
 import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
+import { supabase } from "@/lib/supabase";
 import { ProductForm } from "@/components/admin/ProductForm";
 
 export default async function NuevoProductoPage() {
   const session = await auth();
   if (!session?.user) redirect("/admin/login");
 
-  const categories = await prisma.category.findMany({
-    orderBy: { name: "asc" },
-  });
+  const { data: categories } = await supabase
+    .from("Category")
+    .select("*")
+    .order("name", { ascending: true });
 
   return (
     <div>
@@ -18,7 +19,7 @@ export default async function NuevoProductoPage() {
         <p className="text-sm text-gray-500">Agrega un nuevo producto a la tienda</p>
       </div>
       <ProductForm
-        categories={categories.map((c) => ({ id: c.id, name: c.name }))}
+        categories={(categories || []).map((c) => ({ id: c.id, name: c.name }))}
       />
     </div>
   );

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { supabase } from "@/lib/supabase";
 
 export async function POST(request: Request) {
   try {
@@ -17,8 +17,9 @@ export async function POST(request: Request) {
       );
     }
 
-    const order = await prisma.order.create({
-      data: {
+    const { data: order, error: orderError } = await supabase
+      .from("Order")
+      .insert({
         customerName: body.customerName,
         customerEmail: body.customerEmail,
         customerPhone: body.customerPhone || null,
@@ -26,18 +27,26 @@ export async function POST(request: Request) {
         shippingAddress: body.shippingAddress || null,
         total: body.total,
         status: "PENDING",
-        items: {
-          create: body.items.map(
-            (item: { productId: string; price: number; quantity: number }) => ({
-              productId: item.productId,
-              price: item.price,
-              quantity: item.quantity,
-            })
-          ),
-        },
-      },
-      include: { items: true },
-    });
+      })
+      .select()
+      .single();
+
+    if (orderError) throw orderError;
+
+    const items = body.items.map(
+      (item: { productId: string; price: number; quantity: number }) => ({
+        orderId: order.id,
+        productId: item.productId,
+        price: item.price,
+        quantity: item.quantity,
+      })
+    );
+
+    const { error: itemsError } = await supabase
+      .from("OrderItem")
+      .insert(items);
+
+    if (itemsError) throw itemsError;
 
     return NextResponse.json(order, { status: 201 });
   } catch {

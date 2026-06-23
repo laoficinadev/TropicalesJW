@@ -1,26 +1,27 @@
 import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
+import { supabase } from "@/lib/supabase";
 import { Mail, MessageSquare } from "lucide-react";
 
 export default async function AdminMensajesPage() {
   const session = await auth();
   if (!session?.user) redirect("/admin/login");
 
-  const messages = await prisma.contactMessage.findMany({
-    orderBy: { createdAt: "desc" },
-  });
+  const { data: messages } = await supabase
+    .from("ContactMessage")
+    .select("*")
+    .order("createdAt", { ascending: false });
 
   return (
     <div>
       <div className="mb-6">
         <h1 className="text-xl font-bold text-gray-900">Mensajes</h1>
         <p className="text-sm text-gray-500">
-          {messages.length} mensaje{messages.length !== 1 ? "s" : ""}
+          {messages?.length || 0} mensaje{(messages?.length || 0) !== 1 ? "s" : ""}
         </p>
       </div>
 
-      {messages.length === 0 ? (
+      {!messages || messages.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-20 text-center">
           <MessageSquare className="mb-4 h-12 w-12 text-gray-300" />
           <p className="text-gray-500">No hay mensajes aún</p>

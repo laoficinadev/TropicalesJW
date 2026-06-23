@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { prisma } from "@/lib/prisma";
+import { supabase } from "@/lib/supabase";
 import { formatPrice } from "@/lib/utils";
 import Link from "next/link";
 import { CheckCircle, Package } from "lucide-react";
@@ -8,18 +8,34 @@ interface PageProps {
   searchParams: Promise<{ id?: string }>;
 }
 
+interface ItemWithProduct {
+  id: string;
+  quantity: number;
+  price: number;
+  productId: string;
+  product: { name: string };
+}
+
 export default async function ConfirmacionPage({
   searchParams,
 }: PageProps) {
   const { id } = await searchParams;
   if (!id) redirect("/");
 
-  const order = await prisma.order.findUnique({
-    where: { id },
-    include: { items: { include: { product: true } } },
-  });
+  const { data: order } = await supabase
+    .from("Order")
+    .select("*")
+    .eq("id", id)
+    .single();
 
   if (!order) redirect("/");
+
+  const { data: orderItems } = await supabase
+    .from("OrderItem")
+    .select("*, product:Product(name)")
+    .eq("orderId", id);
+
+  const items = (orderItems || []) as unknown as ItemWithProduct[];
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 lg:px-8">
@@ -48,7 +64,7 @@ export default async function ConfirmacionPage({
         </div>
 
         <div className="mt-6 divide-y divide-gray-100">
-          {order.items.map((item) => (
+          {items.map((item) => (
             <div
               key={item.id}
               className="flex items-center justify-between py-3"

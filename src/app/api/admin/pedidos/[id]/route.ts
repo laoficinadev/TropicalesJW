@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { supabase } from "@/lib/supabase";
 import { auth } from "@/lib/auth";
 
 export async function PATCH(
@@ -15,10 +15,14 @@ export async function PATCH(
 
   try {
     const body = await request.json();
-    const order = await prisma.order.update({
-      where: { id },
-      data: { status: body.status },
-    });
+    const { data: order, error } = await supabase
+      .from("Order")
+      .update({ status: body.status })
+      .eq("id", id)
+      .select()
+      .single();
+
+    if (error) throw error;
     return NextResponse.json(order);
   } catch {
     return NextResponse.json(

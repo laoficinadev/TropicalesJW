@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
+import { supabase } from "@/lib/supabase";
 import { formatPrice } from "@/lib/utils";
 import Link from "next/link";
 import { Pencil, Plus, Trash2 } from "lucide-react";
@@ -10,10 +10,10 @@ export default async function AdminProductosPage() {
   const session = await auth();
   if (!session?.user) redirect("/admin/login");
 
-  const products = await prisma.product.findMany({
-    include: { category: true },
-    orderBy: { createdAt: "desc" },
-  });
+  const { data: products } = await supabase
+    .from("Product")
+    .select("*, category:Category(*)")
+    .order("createdAt", { ascending: false });
 
   return (
     <div>
@@ -21,7 +21,7 @@ export default async function AdminProductosPage() {
         <div>
           <h1 className="text-xl font-bold text-gray-900">Productos</h1>
           <p className="text-sm text-gray-500">
-            {products.length} producto{products.length !== 1 ? "s" : ""}
+            {products?.length || 0} producto{(products?.length || 0) !== 1 ? "s" : ""}
           </p>
         </div>
         <Link
@@ -46,7 +46,7 @@ export default async function AdminProductosPage() {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
-            {products.map((product) => (
+            {(products || []).map((product) => (
               <tr
                 key={product.id}
                 className="transition hover:bg-gray-50/50"

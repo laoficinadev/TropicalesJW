@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { supabase } from "@/lib/supabase";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -7,28 +7,35 @@ export async function GET(request: Request) {
   const category = searchParams.get("categoria");
   const featured = searchParams.get("destacados");
 
-  const where: Record<string, unknown> = { published: true };
+  let query = supabase
+    .from("Product")
+    .select("*, category:Category(*)")
+    .eq("published", true);
 
   if (search) {
-    where.OR = [
-      { name: { contains: search, mode: "insensitive" } },
-      { description: { contains: search, mode: "insensitive" } },
-    ];
+    query = query.or(
+      `name.ilike.%${search}%,description.ilike.%${search}%`
+    );
   }
 
   if (category) {
-    where.category = { slug: category };
+    const { data: cat } = await supabase
+      .from("Category")
+      .select("id")
+      .eq("slug", category)
+      .single();
+    if (cat) {
+      query = query.eq("categoryId", cat.id);
+    }
   }
 
   if (featured === "true") {
-    where.featured = true;
+    query = query.eq("featured", true);
   }
 
-  const products = await prisma.product.findMany({
-    where,
-    include: { category: true },
-    orderBy: { createdAt: "desc" },
-  });
+  query = query.order("createdAt", { ascending: false });
 
-  return NextResponse.json(products);
+  const { data: products } = await query;
+
+  return NextResponse.json(products || []);
 }

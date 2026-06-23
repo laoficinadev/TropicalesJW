@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
+import { supabase } from "@/lib/supabase";
 import { formatPrice } from "@/lib/utils";
 import { Package } from "lucide-react";
 import { OrderStatusSelect } from "@/components/admin/OrderStatusSelect";
@@ -9,21 +9,21 @@ export default async function AdminPedidosPage() {
   const session = await auth();
   if (!session?.user) redirect("/admin/login");
 
-  const orders = await prisma.order.findMany({
-    include: { items: { include: { product: true } } },
-    orderBy: { createdAt: "desc" },
-  });
+  const { data: orders } = await supabase
+    .from("Order")
+    .select("*, items:OrderItem(*, product:Product(*))")
+    .order("createdAt", { ascending: false });
 
   return (
     <div>
       <div className="mb-6">
         <h1 className="text-xl font-bold text-gray-900">Pedidos</h1>
         <p className="text-sm text-gray-500">
-          {orders.length} pedido{orders.length !== 1 ? "s" : ""}
+          {orders?.length || 0} pedido{(orders?.length || 0) !== 1 ? "s" : ""}
         </p>
       </div>
 
-      {orders.length === 0 ? (
+      {!orders || orders.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-20 text-center">
           <Package className="mb-4 h-12 w-12 text-gray-300" />
           <p className="text-gray-500">No hay pedidos aún</p>
@@ -67,7 +67,7 @@ export default async function AdminPedidosPage() {
 
               <div className="mt-4 border-t border-gray-100 pt-4">
                 <div className="space-y-2">
-                  {order.items.map((item) => (
+                  {order.items.map((item: { id: string; quantity: number; price: number; product: { name: string } }) => (
                     <div
                       key={item.id}
                       className="flex items-center justify-between text-sm"

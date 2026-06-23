@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { supabase } from "@/lib/supabase";
 
 export async function POST(request: Request) {
   try {
@@ -12,15 +12,19 @@ export async function POST(request: Request) {
       );
     }
 
-    const message = await prisma.contactMessage.create({
-      data: {
+    const { data: message, error } = await supabase
+      .from("ContactMessage")
+      .insert({
         name: body.name,
         email: body.email,
         phone: body.phone || null,
         subject: body.subject,
         message: body.message,
-      },
-    });
+      })
+      .select()
+      .single();
+
+    if (error) throw error;
 
     return NextResponse.json(message, { status: 201 });
   } catch {

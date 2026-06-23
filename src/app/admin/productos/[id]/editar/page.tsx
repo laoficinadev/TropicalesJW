@@ -1,6 +1,6 @@
 import { redirect, notFound } from "next/navigation";
 import { auth } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
+import { supabase } from "@/lib/supabase";
 import { ProductForm } from "@/components/admin/ProductForm";
 
 interface PageProps {
@@ -13,12 +13,18 @@ export default async function EditarProductoPage({ params }: PageProps) {
 
   const { id } = await params;
 
-  const [product, categories] = await Promise.all([
-    prisma.product.findUnique({ where: { id } }),
-    prisma.category.findMany({ orderBy: { name: "asc" } }),
-  ]);
+  const { data: product } = await supabase
+    .from("Product")
+    .select("*")
+    .eq("id", id)
+    .single();
 
   if (!product) notFound();
+
+  const { data: categories } = await supabase
+    .from("Category")
+    .select("*")
+    .order("name", { ascending: true });
 
   return (
     <div>
@@ -39,7 +45,7 @@ export default async function EditarProductoPage({ params }: PageProps) {
           categoryId: product.categoryId,
           images: product.images,
         }}
-        categories={categories.map((c) => ({ id: c.id, name: c.name }))}
+        categories={(categories || []).map((c) => ({ id: c.id, name: c.name }))}
       />
     </div>
   );
