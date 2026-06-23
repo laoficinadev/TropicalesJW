@@ -16,7 +16,7 @@
     "db:seed": "prisma db seed",
     "db:seed:prod": "prisma db seed --schema=prisma/schema.postgres.prisma",
     "db:studio": "prisma studio",
-    "vercel-build": "npx prisma generate --schema=prisma/schema.postgres.prisma && next build"
+    "vercel-build": "prisma generate --schema=prisma/schema.postgres.prisma && next build"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
