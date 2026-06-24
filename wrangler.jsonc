@@ -9,5 +9,10 @@
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"
+  },
+  "vars": {
+    "SUPABASE_URL": "https://dhucjrqfsxgwixrkuynb.supabase.co",
+    "AUTH_URL": "https://tropicalesjw.theoffice7075.workers.dev",
+    "NEXTJS_ENV": "production"
   }
 }
