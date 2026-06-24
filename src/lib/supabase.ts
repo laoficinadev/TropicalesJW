@@ -4,12 +4,12 @@ let client: SupabaseClient | null = null;
 
 function getClient(): SupabaseClient {
   if (!client) {
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
     const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
     if (!supabaseUrl || !supabaseKey) {
       throw new Error(
-        "Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY) are required"
+        "Supabase environment variables (SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY) are required"
       );
     }
 
