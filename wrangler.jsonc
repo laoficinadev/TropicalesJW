@@ -14,7 +14,7 @@
     "SUPABASE_URL": "https://dhucjrqfsxgwixrkuynb.supabase.co",
     "SUPABASE_SERVICE_ROLE_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRodWNqcnFmc3hnd2l4cmt1eW5iIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4MjE2MTI4MCwiZXhwIjoyMDk3NzM3MjgwfQ.0XZa2vPHEgZH7s72VX90NC9ju71206yeOYyXm-n8kao",
     "AUTH_SECRET": "super-secret-key-tropicalesjw-123",
-    "AUTH_URL": "https://tropicalesjw.theoffice7075.workers.dev",
+    "AUTH_URL": "https://tropicalesjw.online-shop-tropicales.workers.dev",
     "NEXTJS_ENV": "production"
   }
 }
