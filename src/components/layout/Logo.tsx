@@ -6,7 +6,7 @@ interface LogoProps {
   className?: string;
 }
 
-export function Logo({ showText = true, className = "" }: LogoProps) {
+export function Logo({ showText = false, className = "" }: LogoProps) {
   return (
     <Link href="/" className={`flex items-center gap-2 group ${className}`}>
       <Image
