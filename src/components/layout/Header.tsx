@@ -34,7 +34,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-brand-primary/10 bg-white/95 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-white/60">
-      <div className="mx-auto flex h-16 max-w-7xl items-center gap-2 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-16 max-w-7xl items-center gap-2 px-2 sm:px-4 lg:px-6">
         <Logo />
 
         <DarkModeToggle />
@@ -132,7 +132,7 @@ export function Header() {
 
       {/* Mobile search bar */}
       {searchOpen && (
-        <div className="border-t border-brand-primary/10 px-4 py-3 md:hidden">
+        <div className="border-t border-brand-primary/10 px-2 sm:px-4 py-3 md:hidden">
           <form onSubmit={handleSearch} className="flex w-full">
             <input
               ref={searchRef}
