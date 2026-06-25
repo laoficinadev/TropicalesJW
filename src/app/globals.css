@@ -70,13 +70,12 @@ body {
 
 /* === DARK MODE === */
 html.dark body {
-  background: var(--primary-dark);
+  background: var(--surface);
   color: var(--text);
 }
 
-/* Page background: very dark navy */
 html.dark {
-  background: var(--primary-dark);
+  background: var(--surface);
 }
 
 /* Surfaces (cards, headers, sections) */
