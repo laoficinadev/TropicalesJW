@@ -34,7 +34,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-brand-primary/10 bg-white/95 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-white/60">
-      <div className="mx-auto flex h-16 max-w-7xl items-center gap-2 px-1 sm:px-2">
+      <div className="flex h-16 items-center gap-2 px-1">
         <Logo />
 
         <DarkModeToggle />
