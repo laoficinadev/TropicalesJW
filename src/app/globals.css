@@ -3,50 +3,69 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #2D2D2D;
-  --brand-primary: #0B2545;
-  --brand-primary-dark: #06152B;
-  --brand-accent: #0199E4;
-  --brand-accent-dark: #0077B6;
-  --brand-secondary: #07D781;
-  --brand-light: #F0F7FC;
+  --primary: #0B2545;
+  --primary-dark: #06152B;
+  --accent: #0199E4;
+  --accent-dark: #0077B6;
+  --secondary: #07D781;
+  --secondary-light: #05B86E;
+  --light: #F0F7FC;
+  --dark: #0B2545;
+  --text: #2D2D2D;
+  --text-light: #666666;
+  --white: #ffffff;
   --surface: #ffffff;
-  --border-light: #e5e7eb;
+  --shadow: 0 4px 20px rgba(0,0,0,0.1);
+  --transition: 0.3s ease;
 }
 
 html.dark {
-  --background: #071018;
-  --foreground: #F1F5F9;
-  --brand-primary: #0D1B2A;
-  --brand-primary-dark: #071018;
-  --brand-accent: #5AC8FF;
-  --brand-accent-dark: #4DC3FF;
-  --brand-secondary: #4AEAA5;
-  --brand-light: #0D1B2A;
+  --primary: #0D1B2A;
+  --primary-dark: #071018;
+  --accent: #5AC8FF;
+  --accent-dark: #4DC3FF;
+  --secondary: #4AEAA5;
+  --secondary-light: #2EE09A;
+  --light: #0D1B2A;
+  --dark: #071018;
+  --text: #F1F5F9;
+  --text-light: #CBD5E1;
+  --white: #ffffff;
   --surface: #152238;
-  --border-light: #2A3A4F;
+  --shadow: 0 4px 20px rgba(0,0,0,0.5);
+  --transition: 0.3s ease;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-brand-primary: var(--brand-primary);
-  --color-brand-primary-dark: var(--brand-primary-dark);
-  --color-brand-accent: var(--brand-accent);
-  --color-brand-accent-dark: var(--brand-accent-dark);
-  --color-brand-secondary: var(--brand-secondary);
-  --color-brand-light: var(--brand-light);
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-accent: var(--accent);
+  --color-accent-dark: var(--accent-dark);
+  --color-secondary: var(--secondary);
+  --color-secondary-light: var(--secondary-light);
+  --color-light: var(--light);
+  --color-dark: var(--dark);
+  --color-text: var(--text);
+  --color-text-light: var(--text-light);
+  --color-white: var(--white);
   --color-surface: var(--surface);
-  --color-border-light: var(--border-light);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-brand-primary: var(--primary);
+  --color-brand-primary-dark: var(--primary-dark);
+  --color-brand-accent: var(--accent);
+  --color-brand-accent-dark: var(--accent-dark);
+  --color-brand-secondary: var(--secondary);
+  --color-brand-light: var(--light);
+  --color-background: var(--surface);
+  --color-foreground: var(--text);
+  --color-border-light: #e5e7eb;
+  --font-sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Segoe UI', system-ui, -apple-system, sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  background: var(--surface);
+  color: var(--text);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
 }
 
 html.dark body {
