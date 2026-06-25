@@ -1,9 +1,11 @@
 import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
+import { auth } from "@/lib/auth";
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
+    const session = await auth();
 
     if (
       !body.customerName ||
@@ -17,17 +19,23 @@ export async function POST(request: Request) {
       );
     }
 
+    const orderData: Record<string, unknown> = {
+      customerName: body.customerName,
+      customerEmail: body.customerEmail,
+      customerPhone: body.customerPhone || null,
+      customerNotes: body.customerNotes || null,
+      shippingAddress: body.shippingAddress || null,
+      total: body.total,
+      status: "PENDING",
+    };
+
+    if (session?.user?.id) {
+      orderData.userId = session.user.id;
+    }
+
     const { data: order, error: orderError } = await supabase
       .from("Order")
-      .insert({
-        customerName: body.customerName,
-        customerEmail: body.customerEmail,
-        customerPhone: body.customerPhone || null,
-        customerNotes: body.customerNotes || null,
-        shippingAddress: body.shippingAddress || null,
-        total: body.total,
-        status: "PENDING",
-      })
+      .insert(orderData)
       .select()
       .single();
 

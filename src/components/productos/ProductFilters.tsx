@@ -2,6 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { Search } from "lucide-react";
+import { useLocale } from "@/lib/i18n";
 
 export function ProductFilters({
   categories,
@@ -10,6 +11,7 @@ export function ProductFilters({
 }) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { t } = useLocale();
   const currentQ = searchParams.get("q") || "";
   const currentCat = searchParams.get("categoria") || "";
 
@@ -38,7 +40,7 @@ export function ProductFilters({
           <input
             name="q"
             defaultValue={currentQ}
-            placeholder="Buscar productos..."
+            placeholder={t("products.searchProducts")}
             className="w-full rounded-lg border border-gray-200 bg-white py-2.5 pl-10 pr-4 text-sm transition focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
           />
         </div>
@@ -47,7 +49,7 @@ export function ProductFilters({
       {categories.length > 0 && (
         <div>
           <h3 className="mb-3 text-xs font-semibold uppercase tracking-widest text-gray-900">
-            Categorías
+            {t("products.allCategories")}
           </h3>
           <div className="flex flex-wrap gap-2">
             {categories.map((cat) => (

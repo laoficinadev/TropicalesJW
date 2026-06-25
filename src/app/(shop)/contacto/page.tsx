@@ -3,8 +3,10 @@
 import { useState } from "react";
 import { Mail, Phone, MapPin, Send, CheckCircle } from "lucide-react";
 import toast from "react-hot-toast";
+import { useLocale } from "@/lib/i18n";
 
 export default function ContactoPage() {
+  const { t } = useLocale();
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
@@ -30,9 +32,9 @@ export default function ContactoPage() {
 
       if (!res.ok) throw new Error();
       setSubmitted(true);
-      toast.success("Mensaje enviado con éxito");
+      toast.success(t("contact.success"));
     } catch {
-      toast.error("Error al enviar el mensaje. Intenta de nuevo.");
+      toast.error(t("contact.error"));
     } finally {
       setSubmitting(false);
     }
@@ -46,16 +48,16 @@ export default function ContactoPage() {
             <CheckCircle className="h-10 w-10 text-brand-accent" />
           </div>
           <h1 className="text-3xl font-bold text-gray-900">
-            ¡Mensaje Enviado!
+            {t("contact.success")}
           </h1>
           <p className="mt-2 text-gray-500">
-            Gracias por contactarnos. Te responderemos a la brevedad posible.
+            {t("contact.success")}
           </p>
           <button
             onClick={() => setSubmitted(false)}
             className="mt-8 inline-flex items-center gap-2 rounded-xl bg-brand-primary px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-primary"
           >
-            Enviar otro mensaje
+            {t("contact.send")}
           </button>
         </div>
       </div>
@@ -65,9 +67,9 @@ export default function ContactoPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="mb-10 text-center">
-        <h1 className="text-3xl font-bold text-gray-900">Contacto</h1>
+        <h1 className="text-3xl font-bold text-gray-900">{t("contact.title")}</h1>
         <p className="mt-2 text-gray-500">
-          Estamos para servirte. Escríbenos y te responderemos pronto.
+          {t("contact.subtitle")}
         </p>
       </div>
 
@@ -81,13 +83,13 @@ export default function ContactoPage() {
             },
             {
               icon: Phone,
-              title: "Teléfono",
+              title: t("contact.phone"),
               content: "+53 56671258",
             },
             {
               icon: MapPin,
-              title: "Ubicación",
-              content: "San José, Costa Rica",
+              title: t("contact.infoTitle"),
+              content: t("contact.address"),
             },
           ].map((item) => (
             <div key={item.title} className="flex items-start gap-4">
@@ -115,7 +117,7 @@ export default function ContactoPage() {
                   htmlFor="name"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Nombre completo *
+                  {t("contact.name")} *
                 </label>
                 <input
                   id="name"
@@ -130,7 +132,7 @@ export default function ContactoPage() {
                   htmlFor="email"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Correo electrónico *
+                  {t("contact.email")} *
                 </label>
                 <input
                   id="email"
@@ -147,7 +149,7 @@ export default function ContactoPage() {
                 htmlFor="phone"
                 className="block text-sm font-medium text-gray-700"
               >
-                Teléfono
+                {t("contact.phone")}
               </label>
               <input
                 id="phone"
@@ -162,7 +164,7 @@ export default function ContactoPage() {
                 htmlFor="subject"
                 className="block text-sm font-medium text-gray-700"
               >
-                Asunto *
+                {t("contact.message")} *
               </label>
               <input
                 id="subject"
@@ -178,7 +180,7 @@ export default function ContactoPage() {
                 htmlFor="message"
                 className="block text-sm font-medium text-gray-700"
               >
-                Mensaje *
+                {t("contact.message")} *
               </label>
               <textarea
                 id="message"
@@ -195,7 +197,7 @@ export default function ContactoPage() {
               className="mt-6 inline-flex items-center gap-2 rounded-xl bg-brand-primary px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-primary disabled:opacity-50"
             >
               <Send className="h-4 w-4" />
-              {submitting ? "Enviando..." : "Enviar Mensaje"}
+              {submitting ? t("contact.sending") : t("contact.send")}
             </button>
           </form>
         </div>

@@ -1,12 +1,12 @@
-import { redirect } from "next/navigation";
-import { supabase } from "@/lib/supabase";
-import { formatPrice } from "@/lib/utils";
+"use client";
+
+import { Suspense, useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { CheckCircle, Package } from "lucide-react";
-
-interface PageProps {
-  searchParams: Promise<{ id?: string }>;
-}
+import { supabase } from "@/lib/supabase";
+import { formatPrice } from "@/lib/utils";
+import { useLocale } from "@/lib/i18n";
 
 interface ItemWithProduct {
   id: string;
@@ -16,26 +16,46 @@ interface ItemWithProduct {
   product: { name: string };
 }
 
-export default async function ConfirmacionPage({
-  searchParams,
-}: PageProps) {
-  const { id } = await searchParams;
-  if (!id) redirect("/");
+function ConfirmacionContent() {
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id");
+  const { t } = useLocale();
+  const [order, setOrder] = useState<Record<string, unknown> | null>(null);
+  const [items, setItems] = useState<ItemWithProduct[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const { data: order } = await supabase
-    .from("Order")
-    .select("*")
-    .eq("id", id)
-    .single();
+  useEffect(() => {
+    if (!id) return;
 
-  if (!order) redirect("/");
+    async function load() {
+      const { data: orderData } = await supabase
+        .from("Order")
+        .select("*")
+        .eq("id", id)
+        .single();
 
-  const { data: orderItems } = await supabase
-    .from("OrderItem")
-    .select("*, product:Product(name)")
-    .eq("orderId", id);
+      if (!orderData) return;
 
-  const items = (orderItems || []) as unknown as ItemWithProduct[];
+      setOrder(orderData);
+
+      const { data: orderItems } = await supabase
+        .from("OrderItem")
+        .select("*, product:Product(name)")
+        .eq("orderId", id);
+
+      setItems((orderItems || []) as unknown as ItemWithProduct[]);
+      setLoading(false);
+    }
+    load();
+  }, [id]);
+
+  if (loading || !order) {
+    return (
+      <div className="mx-auto max-w-2xl px-4 py-20 text-center sm:px-6 lg:px-8">
+        <p className="text-gray-500">{t("common.loading")}</p>
+      </div>
+    );
+  }
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 lg:px-8">
@@ -44,22 +64,23 @@ export default async function ConfirmacionPage({
           <CheckCircle className="h-10 w-10 text-brand-accent" />
         </div>
         <h1 className="text-3xl font-bold text-gray-900">
-          ¡Pedido Confirmado!
+          {t("confirmation.subtitle")}
         </h1>
         <p className="mt-2 text-gray-500">
-          Gracias por tu compra, {order.customerName}. Te hemos enviado un
-          resumen a <strong>{order.customerEmail}</strong>.
+          {t("confirmation.thankYou")}, {(order as { customerName?: string }).customerName}.{" "}
+          {t("confirmation.confirmationEmail")}{" "}
+          <strong>{(order as { customerEmail?: string }).customerEmail}</strong>.
         </p>
       </div>
 
       <div className="mt-10 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold text-gray-900">
-            Pedido #{order.id.slice(-8).toUpperCase()}
+            {t("confirmation.orderNumber")}: {(order.id as string).slice(-8).toUpperCase()}
           </h2>
           <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-accent/10 px-3 py-1 text-xs font-medium text-brand-primary-dark">
             <Package className="h-3 w-3" />
-            Pendiente
+            {t("orders.pending")}
           </span>
         </div>
 
@@ -91,7 +112,7 @@ export default async function ConfirmacionPage({
 
         <div className="mt-6 border-t border-gray-100 pt-4">
           <div className="flex justify-between text-lg font-bold text-gray-900">
-            <span>Total</span>
+            <span>{t("cart.total")}</span>
             <span>{formatPrice(Number(order.total))}</span>
           </div>
         </div>
@@ -99,8 +120,8 @@ export default async function ConfirmacionPage({
 
       <div className="mt-10 rounded-xl border border-brand-accent/20 bg-brand-accent/10 p-4">
         <p className="text-center text-sm text-brand-primary">
-          Pagarás en efectivo cuando recibas tu pedido. Te contactaremos
-          para coordinar la entrega.
+          {t("checkout.paymentMethod")}.{" "}
+          {t("checkout.paymentDesc")}
         </p>
       </div>
 
@@ -109,9 +130,17 @@ export default async function ConfirmacionPage({
           href="/productos"
           className="inline-flex items-center gap-2 rounded-xl bg-brand-primary px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-primary"
         >
-          Seguir comprando
+          {t("confirmation.returnToShop")}
         </Link>
       </div>
     </div>
+  );
+}
+
+export default function ConfirmacionPage() {
+  return (
+    <Suspense>
+      <ConfirmacionContent />
+    </Suspense>
   );
 }

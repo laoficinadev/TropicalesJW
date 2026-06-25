@@ -7,6 +7,7 @@ import Link from "next/link";
 import toast from "react-hot-toast";
 import { formatPrice } from "@/lib/utils";
 import { CartSummary } from "@/components/carrito/CartSummary";
+import { useLocale } from "@/lib/i18n";
 
 interface CartItem {
   id: string;
@@ -19,6 +20,7 @@ interface CartItem {
 
 export default function CheckoutPage() {
   const router = useRouter();
+  const { t } = useLocale();
   const [items, setItems] = useState<CartItem[]>([]);
   const [mounted, setMounted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -42,7 +44,7 @@ export default function CheckoutPage() {
     const payload = {
       customerName: form.get("name"),
       customerEmail: form.get("email"),
-      customerPhone: form.get("phone"),
+      customerPhone: form.get("phone") || "",
       customerNotes: form.get("notes") || "",
       shippingAddress: form.get("address"),
       items: items.map((item) => ({
@@ -68,7 +70,7 @@ export default function CheckoutPage() {
       window.dispatchEvent(new Event("cart-updated"));
       router.push(`/checkout/confirmacion?id=${order.id}`);
     } catch {
-      toast.error("Error al procesar el pedido. Intenta de nuevo.");
+      toast.error(t("checkout.error"));
       setSubmitting(false);
     }
   }
@@ -83,17 +85,17 @@ export default function CheckoutPage() {
             <ShoppingBag className="h-8 w-8 text-brand-accent/60" />
           </div>
           <h1 className="text-2xl font-bold text-gray-900">
-            No hay productos en tu carrito
+            {t("checkout.emptyTitle")}
           </h1>
           <p className="mt-2 text-gray-500">
-            Agrega productos antes de proceder al checkout
+            {t("checkout.emptyDesc")}
           </p>
           <Link
             href="/productos"
             className="mt-6 inline-flex items-center gap-2 rounded-xl bg-brand-primary px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-primary"
           >
             <ArrowLeft className="h-4 w-4" />
-            Ver Productos
+            {t("checkout.viewProducts")}
           </Link>
         </div>
       </div>
@@ -108,9 +110,9 @@ export default function CheckoutPage() {
           className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 transition hover:text-brand-primary"
         >
           <ArrowLeft className="h-4 w-4" />
-          Volver al carrito
+          {t("checkout.backToCart")}
         </Link>
-        <h1 className="mt-2 text-3xl font-bold text-gray-900">Checkout</h1>
+        <h1 className="mt-2 text-3xl font-bold text-gray-900">{t("checkout.title")}</h1>
       </div>
 
       <form onSubmit={handleSubmit}>
@@ -118,7 +120,7 @@ export default function CheckoutPage() {
           <div className="space-y-6 lg:col-span-2">
             <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
               <h2 className="mb-6 text-lg font-semibold text-gray-900">
-                Información de contacto
+                {t("checkout.contactInfo")}
               </h2>
 
               <div className="space-y-4">
@@ -128,7 +130,7 @@ export default function CheckoutPage() {
                       htmlFor="name"
                       className="block text-sm font-medium text-gray-700"
                     >
-                      Nombre completo *
+                      {t("checkout.fullName")} *
                     </label>
                     <input
                       id="name"
@@ -143,7 +145,7 @@ export default function CheckoutPage() {
                       htmlFor="email"
                       className="block text-sm font-medium text-gray-700"
                     >
-                      Correo electrónico *
+                      {t("checkout.email")} *
                     </label>
                     <input
                       id="email"
@@ -160,7 +162,7 @@ export default function CheckoutPage() {
                     htmlFor="phone"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Teléfono
+                    {t("checkout.phone")}
                   </label>
                   <input
                     id="phone"
@@ -175,7 +177,7 @@ export default function CheckoutPage() {
                     htmlFor="address"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Dirección de envío *
+                    {t("checkout.shippingAddress")} *
                   </label>
                   <textarea
                     id="address"
@@ -191,14 +193,14 @@ export default function CheckoutPage() {
                     htmlFor="notes"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Notas del pedido
+                    {t("checkout.orderNotes")}
                   </label>
                   <textarea
                     id="notes"
                     name="notes"
                     rows={2}
                     className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
-                    placeholder="Instrucciones especiales, etc."
+                    placeholder={t("checkout.orderNotesPlaceholder")}
                   />
                 </div>
               </div>
@@ -213,11 +215,10 @@ export default function CheckoutPage() {
                 <CreditCard className="mt-0.5 h-5 w-5 text-gray-400" />
                 <div className="text-xs text-gray-500">
                   <p className="font-medium text-gray-700">
-                    Pago contra entrega
+                    {t("checkout.paymentMethod")}
                   </p>
                   <p className="mt-1">
-                    Realiza el pago en efectivo al recibir tu pedido. No
-                    necesitas tarjeta.
+                    {t("checkout.paymentDesc")}
                   </p>
                 </div>
               </div>
@@ -229,8 +230,8 @@ export default function CheckoutPage() {
               className="flex w-full items-center justify-center gap-2 rounded-xl bg-brand-primary px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-primary disabled:opacity-50"
             >
               {submitting
-                ? "Procesando..."
-                : `Confirmar Pedido — ${formatPrice(getTotal())}`}
+                ? t("checkout.processing")
+                : `${t("checkout.placeOrder")} — ${formatPrice(getTotal())}`}
             </button>
           </div>
         </div>

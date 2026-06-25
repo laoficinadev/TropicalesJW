@@ -1,7 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import { Logo } from "./Logo";
+import { useLocale } from "@/lib/i18n";
 
 export function Footer() {
+  const { t } = useLocale();
+
   return (
     <footer className="mt-auto border-t border-brand-primary/10 bg-gradient-to-b from-white to-brand-light/30">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -9,19 +14,18 @@ export function Footer() {
           <div className="space-y-4">
             <Logo />
             <p className="text-sm leading-relaxed text-gray-500">
-              Tu tienda de confianza con los mejores productos tropicales.
-              Calidad y frescura garantizada.
+              {t("footer.description")}
             </p>
           </div>
 
           <div>
             <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-gray-900">
-              Enlaces
+              {t("footer.links")}
             </h3>
             <ul className="space-y-3">
               {[
-                { href: "/productos", label: "Productos" },
-                { href: "/contacto", label: "Contacto" },
+                { href: "/productos", label: t("nav.products") },
+                { href: "/contacto", label: t("nav.contact") },
               ].map((link) => (
                 <li key={link.href}>
                   <Link
@@ -37,7 +41,7 @@ export function Footer() {
 
           <div>
             <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-gray-900">
-              Contacto
+              {t("footer.contact")}
             </h3>
             <ul className="space-y-3 text-sm text-gray-500">
               <li className="flex items-center gap-2">
@@ -53,19 +57,19 @@ export function Footer() {
 
           <div>
             <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-gray-900">
-              Horarios
+              {t("footer.hours")}
             </h3>
             <ul className="space-y-3 text-sm text-gray-500">
-              <li>Lun - Vie: 8:00 AM - 6:00 PM</li>
-              <li>Sáb: 8:00 AM - 12:00 PM</li>
-              <li className="text-gray-400">Dom: Cerrado</li>
+              <li>{t("contact.weekdays")}</li>
+              <li>{t("contact.saturday")}</li>
+              <li className="text-gray-400">{t("contact.sunday")}</li>
             </ul>
           </div>
         </div>
 
         <div className="mt-10 border-t border-brand-primary/10 pt-8 text-center text-sm text-gray-400">
-          &copy; {new Date().getFullYear()} TropicalesJW. Todos los derechos
-          reservados.
+          &copy; {new Date().getFullYear()} TropicalesJW.{" "}
+          {t("footer.rights")}
         </div>
       </div>
     </footer>

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ShoppingBag, ArrowLeft } from "lucide-react";
 import { CartItem } from "@/components/carrito/CartItem";
 import { CartSummary } from "@/components/carrito/CartSummary";
+import { useLocale } from "@/lib/i18n";
 
 interface CartItemData {
   id: string;
@@ -16,6 +17,7 @@ interface CartItemData {
 }
 
 export default function CarritoPage() {
+  const { t } = useLocale();
   const [items, setItems] = useState<CartItemData[]>([]);
   const [mounted, setMounted] = useState(false);
 
@@ -43,17 +45,17 @@ export default function CarritoPage() {
             <ShoppingBag className="h-8 w-8 text-brand-accent/60" />
           </div>
           <h1 className="text-2xl font-bold text-gray-900">
-            Tu carrito está vacío
+            {t("cart.empty")}
           </h1>
           <p className="mt-2 text-gray-500">
-            Agrega productos para empezar tu compra
+            {t("cart.emptyDesc")}
           </p>
           <Link
             href="/productos"
             className="mt-6 inline-flex items-center gap-2 rounded-xl bg-brand-primary px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-primary"
           >
             <ArrowLeft className="h-4 w-4" />
-            Ver Productos
+            {t("cart.viewProducts")}
           </Link>
         </div>
       </div>
@@ -65,11 +67,12 @@ export default function CarritoPage() {
       <div className="mb-8 flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">
-            Carrito de Compras
+            {t("cart.title")}
           </h1>
           <p className="mt-1 text-gray-500">
-            {items.length} producto{items.length !== 1 ? "s" : ""} en tu
-            carrito
+            {items.length === 1
+              ? t("cart.items_one", { count: 1 })
+              : t("cart.items_other", { count: items.length })}
           </p>
         </div>
         <Link
@@ -77,7 +80,7 @@ export default function CarritoPage() {
           className="hidden items-center gap-2 text-sm font-medium text-brand-primary transition hover:text-brand-primary sm:flex"
         >
           <ArrowLeft className="h-4 w-4" />
-          Seguir comprando
+          {t("cart.continueShopping")}
         </Link>
       </div>
 
@@ -94,7 +97,7 @@ export default function CarritoPage() {
             href="/checkout"
             className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-brand-primary px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-primary"
           >
-            Proceder al pago
+            {t("cart.proceedToCheckout")}
           </Link>
         </div>
       </div>
@@ -105,7 +108,7 @@ export default function CarritoPage() {
           className="inline-flex items-center gap-2 text-sm font-medium text-brand-primary transition hover:text-brand-primary"
         >
           <ArrowLeft className="h-4 w-4" />
-          Seguir comprando
+          {t("cart.continueShopping")}
         </Link>
       </div>
     </div>

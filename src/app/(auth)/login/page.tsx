@@ -3,11 +3,14 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import toast from "react-hot-toast";
 import { Logo } from "@/components/layout/Logo";
+import { useLocale } from "@/lib/i18n";
 
-export default function AdminLoginPage() {
+export default function LoginPage() {
   const router = useRouter();
+  const { t } = useLocale();
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -18,45 +21,42 @@ export default function AdminLoginPage() {
     const email = form.get("email") as string;
     const password = form.get("password") as string;
 
-    const result = await signIn("admin", {
+    const result = await signIn("user", {
       email,
       password,
       redirect: false,
     });
 
     if (result?.error) {
-      toast.error("Credenciales inválidas");
+      toast.error(t("auth.loginError"));
       setLoading(false);
       return;
     }
 
-    toast.success("Inicio de sesión exitoso");
-    router.push("/admin");
+    toast.success(t("auth.logoutSuccess"));
+    router.push("/");
     router.refresh();
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-brand-light via-white to-brand-accent/10 px-4">
-      <div className="w-full max-w-sm">
+    <div className="mx-auto flex min-h-[60vh] max-w-sm items-center px-4 py-16">
+      <div className="w-full">
         <div className="mb-8 text-center">
           <div className="mb-4 flex justify-center">
             <Logo showText={false} />
           </div>
           <h1 className="text-xl font-semibold text-gray-900">
-            Panel de Administración
+            {t("auth.loginTitle")}
           </h1>
           <p className="mt-1 text-sm text-gray-500">
-            Inicia sesión para gestionar tu tienda
+            {t("auth.loginSubtitle")}
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Email
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              {t("auth.email")}
             </label>
             <input
               id="email"
@@ -65,16 +65,13 @@ export default function AdminLoginPage() {
               required
               autoComplete="email"
               className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
-              placeholder="admin@tropicalesjw.com"
+              placeholder="correo@ejemplo.com"
             />
           </div>
 
           <div>
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Contraseña
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              {t("auth.password")}
             </label>
             <input
               id="password"
@@ -92,9 +89,16 @@ export default function AdminLoginPage() {
             disabled={loading}
             className="w-full rounded-lg bg-brand-primary px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-primary disabled:opacity-50"
           >
-            {loading ? "Iniciando sesión..." : "Iniciar Sesión"}
+            {loading ? t("auth.loggingIn") : t("auth.loginButton")}
           </button>
         </form>
+
+        <p className="mt-6 text-center text-sm text-gray-500">
+          {t("auth.noAccount")}{" "}
+          <Link href="/register" className="font-medium text-brand-accent hover:underline">
+            {t("auth.registerButton")}
+          </Link>
+        </p>
       </div>
     </div>
   );

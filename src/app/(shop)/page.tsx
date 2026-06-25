@@ -1,6 +1,11 @@
+"use client";
+
 import { Leaf, Truck, Shield } from "lucide-react";
+import { useLocale } from "@/lib/i18n";
 
 export default function Home() {
+  const { t } = useLocale();
+
   return (
     <div className="flex flex-col">
       <section className="border-b border-gray-100 bg-white py-12">
@@ -9,18 +14,18 @@ export default function Home() {
             {[
               {
                 icon: Leaf,
-                title: "100% Natural",
-                desc: "Productos frescos directamente de la naturaleza",
+                title: t("home.natural"),
+                desc: t("home.naturalDesc"),
               },
               {
                 icon: Truck,
-                title: "Envío Rápido",
-                desc: "Entregas en todo el país en 24-48 horas",
+                title: t("home.shipping"),
+                desc: t("home.shippingDesc"),
               },
               {
                 icon: Shield,
-                title: "Calidad Garantizada",
-                desc: "Seleccionamos los mejores productos para ti",
+                title: t("home.quality"),
+                desc: t("home.qualityDesc"),
               },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-4">
@@ -41,10 +46,10 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Productos Destacados
+              {t("home.featured")}
             </h2>
             <p className="mt-4 text-lg text-gray-500">
-          Proximamente...
+              {t("common.comingSoon")}
             </p>
           </div>
         </div>
