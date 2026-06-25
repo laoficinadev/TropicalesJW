@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Search, Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
 import { CartBadge } from "../carrito/CartBadge";
+import { DarkModeToggle } from "./DarkModeToggle";
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -40,6 +41,7 @@ export function Header() {
             <Search className="h-5 w-5" />
           </Link>
           <CartBadge />
+          <DarkModeToggle />
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="rounded-full p-2 text-gray-500 transition hover:bg-brand-light hover:text-brand-primary md:hidden"
