@@ -63,53 +63,169 @@ html.dark {
 }
 
 body {
-  background: var(--surface);
+  background: var(--white);
   color: var(--text);
   font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
 }
 
+/* === DARK MODE === */
 html.dark body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--primary-dark);
+  color: var(--text);
 }
 
+/* Page background: very dark navy */
+html.dark {
+  background: var(--primary-dark);
+}
+
+/* Surfaces (cards, headers, sections) */
 html.dark .bg-white {
   background-color: var(--surface);
 }
 
-html.dark .text-gray-900 {
-  color: var(--foreground);
+html.dark .bg-white\/95 {
+  background-color: rgba(21, 34, 56, 0.95);
 }
 
-html.dark .text-gray-500,
-html.dark .text-gray-400,
-html.dark .text-gray-600 {
-  color: #CBD5E1;
+html.dark .bg-white\/60 {
+  background-color: rgba(21, 34, 56, 0.6);
 }
 
-html.dark .border-gray-200,
-html.dark .border-gray-100 {
-  border-color: var(--border-light);
-}
-
+/* Section backgrounds */
 html.dark .bg-gray-50 {
-  background-color: #0D1B2A;
+  background-color: var(--primary);
 }
 
 html.dark .bg-gray-100 {
-  background-color: #152238;
+  background-color: var(--surface);
 }
 
+html.dark .bg-brand-light {
+  background-color: var(--light);
+}
+
+/* Gradient backgrounds in dark mode */
+html.dark .from-brand-light {
+  --tw-gradient-from: var(--light);
+}
+
+html.dark .to-brand-accent\/10 {
+  --tw-gradient-to: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+
+html.dark .to-brand-accent\/20 {
+  --tw-gradient-to: color-mix(in srgb, var(--accent) 20%, transparent);
+}
+
+/* Text */
+html.dark .text-gray-900 {
+  color: var(--text);
+}
+
+html.dark .text-gray-700 {
+  color: var(--text-light);
+}
+
+html.dark .text-gray-600,
+html.dark .text-gray-500,
+html.dark .text-gray-400 {
+  color: var(--text-light);
+}
+
+html.dark .text-white {
+  color: var(--white);
+}
+
+/* Borders */
+html.dark .border-gray-200,
+html.dark .border-gray-100 {
+  border-color: #2A3A4F;
+}
+
+html.dark .border-white\/30 {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Shadows */
 html.dark .shadow-sm,
 html.dark .shadow-md,
 html.dark .shadow-lg {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
+html.dark .shadow {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Hover states */
 html.dark .hover\:bg-gray-100:hover {
   background-color: #1F2D40;
 }
 
-html.dark .hover\:text-gray-900:hover {
-  color: var(--foreground);
+html.dark .hover\:text-gray-900:hover,
+html.dark .hover\:text-gray-700:hover {
+  color: var(--text);
+}
+
+html.dark .hover\:shadow-md:hover {
+  box-shadow: var(--shadow);
+}
+
+/* Form elements */
+html.dark input,
+html.dark select,
+html.dark textarea {
+  background-color: #0D1B2A;
+  border-color: #2A3A4F;
+  color: var(--text);
+}
+
+html.dark input:focus,
+html.dark select:focus,
+html.dark textarea:focus {
+  border-color: var(--accent);
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+/* Search input */
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: #66788F;
+}
+
+/* Links and interactive */
+html.dark .hover\:text-brand-primary:hover {
+  color: var(--accent);
+}
+
+/* Badge / pill */
+html.dark .bg-red-100 { background-color: #3B1C1C; }
+html.dark .text-red-600 { color: #FCA5A5; }
+html.dark .text-red-500 { color: #F87171; }
+html.dark .bg-red-500 { background-color: #DC2626; }
+
+/* Success badges */
+html.dark .bg-emerald-100 { background-color: #0D2B1A; }
+html.dark .text-emerald-600 { color: #6EE7B7; }
+html.dark .text-emerald-700 { color: #34D399; }
+
+html.dark .bg-blue-50 { background-color: #0D1B2A; }
+html.dark .text-blue-600 { color: var(--accent); }
+
+/* Remove white background from common containers */
+html.dark section,
+html.dark main {
+  background: transparent;
+}
+
+html.dark footer .text-gray-400,
+html.dark footer .text-gray-500 {
+  color: #94A3B8;
+}
+
+/* Admin login */
+html.dark .from-brand-light {
+  --tw-gradient-from: var(--primary);
 }
