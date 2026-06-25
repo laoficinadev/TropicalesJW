@@ -45,9 +45,9 @@ export function ProductCard({ product }: { product: Product }) {
   return (
     <Link
       href={`/productos/${product.slug}`}
-      className="group flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition hover:shadow-lg hover:border-emerald-200"
+      className="group flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition hover:shadow-lg hover:border-brand-accent/20"
     >
-      <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-emerald-50 to-amber-50">
+      <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-brand-light to-brand-accent/10">
         {images[0] ? (
           <img
             src={images[0]}
@@ -57,8 +57,8 @@ export function ProductCard({ product }: { product: Product }) {
         ) : (
           <div className="flex h-full items-center justify-center">
             <div className="text-center">
-              <div className="mx-auto mb-2 h-16 w-16 rounded-full bg-emerald-100 flex items-center justify-center">
-                <span className="text-2xl text-emerald-600">
+              <div className="mx-auto mb-2 h-16 w-16 rounded-full bg-brand-light flex items-center justify-center">
+                <span className="text-2xl text-brand-primary">
                   {product.name.charAt(0)}
                 </span>
               </div>
@@ -76,7 +76,7 @@ export function ProductCard({ product }: { product: Product }) {
         <button
           onClick={addToCart}
           disabled={product.stock <= 0}
-          className="absolute bottom-3 right-3 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md opacity-0 transition hover:bg-emerald-600 hover:text-white group-hover:opacity-100 disabled:opacity-0"
+          className="absolute bottom-3 right-3 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md opacity-0 transition hover:bg-brand-primary hover:text-white group-hover:opacity-100 disabled:opacity-0"
         >
           <ShoppingCart className="h-4 w-4" />
         </button>
@@ -84,11 +84,11 @@ export function ProductCard({ product }: { product: Product }) {
 
       <div className="flex flex-1 flex-col gap-1 p-4">
         {product.category && (
-          <span className="text-[11px] font-medium uppercase tracking-wider text-emerald-600">
+          <span className="text-[11px] font-medium uppercase tracking-wider text-brand-primary">
             {product.category.name}
           </span>
         )}
-        <h3 className="font-semibold text-gray-900 transition group-hover:text-emerald-700">
+        <h3 className="font-semibold text-gray-900 transition group-hover:text-brand-primary">
           {product.name}
         </h3>
         <p className="line-clamp-2 text-sm leading-relaxed text-gray-500">

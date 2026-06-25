@@ -59,7 +59,7 @@ export function AddToCartButton({ product }: { product: ProductData }) {
       <div className="flex items-center rounded-xl border border-gray-200">
         <button
           onClick={() => setQuantity(Math.max(1, quantity - 1))}
-          className="flex h-12 w-12 items-center justify-center text-gray-500 transition hover:text-emerald-600"
+          className="flex h-12 w-12 items-center justify-center text-gray-500 transition hover:text-brand-primary"
         >
           <Minus className="h-4 w-4" />
         </button>
@@ -70,7 +70,7 @@ export function AddToCartButton({ product }: { product: ProductData }) {
           onClick={() =>
             setQuantity(Math.min(product.stock, quantity + 1))
           }
-          className="flex h-12 w-12 items-center justify-center text-gray-500 transition hover:text-emerald-600"
+          className="flex h-12 w-12 items-center justify-center text-gray-500 transition hover:text-brand-primary"
         >
           <Plus className="h-4 w-4" />
         </button>
@@ -78,7 +78,7 @@ export function AddToCartButton({ product }: { product: ProductData }) {
 
       <button
         onClick={addToCart}
-        className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-emerald-600 px-8 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700"
+        className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-brand-primary px-8 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-primary"
       >
         <ShoppingCart className="h-4 w-4" />
         Agregar al Carrito

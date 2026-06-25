@@ -32,19 +32,19 @@ export default async function AdminMensajesPage() {
             <div
               key={msg.id}
               className={`rounded-xl border bg-white p-6 shadow-sm ${
-                msg.read ? "border-gray-200" : "border-emerald-200"
+                msg.read ? "border-gray-200" : "border-brand-accent/20"
               }`}
             >
               <div className="flex items-start justify-between">
                 <div className="flex items-start gap-3">
                   <div
                     className={`mt-1 flex h-8 w-8 items-center justify-center rounded-full ${
-                      msg.read ? "bg-gray-100" : "bg-emerald-100"
+                      msg.read ? "bg-gray-100" : "bg-brand-light"
                     }`}
                   >
                     <Mail
                       className={`h-4 w-4 ${
-                        msg.read ? "text-gray-400" : "text-emerald-600"
+                        msg.read ? "text-gray-400" : "text-brand-primary"
                       }`}
                     />
                   </div>
@@ -54,7 +54,7 @@ export default async function AdminMensajesPage() {
                         {msg.name}
                       </h3>
                       {!msg.read && (
-                        <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-medium text-emerald-700">
+                        <span className="rounded-full bg-brand-light px-2 py-0.5 text-[10px] font-medium text-brand-primary">
                           Nuevo
                         </span>
                       )}

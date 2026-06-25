@@ -23,7 +23,7 @@ export default async function ProductoDetailPage({ params }: PageProps) {
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
-        <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-50 to-amber-50">
+        <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br from-brand-light to-brand-accent/10">
           {images[0] ? (
             <img
               src={images[0]}
@@ -33,8 +33,8 @@ export default async function ProductoDetailPage({ params }: PageProps) {
           ) : (
             <div className="flex h-full items-center justify-center">
               <div className="text-center">
-                <div className="mx-auto mb-4 h-24 w-24 rounded-full bg-emerald-100 flex items-center justify-center">
-                  <span className="text-4xl text-emerald-600">
+                <div className="mx-auto mb-4 h-24 w-24 rounded-full bg-brand-light flex items-center justify-center">
+                  <span className="text-4xl text-brand-primary">
                     {product.name.charAt(0)}
                   </span>
                 </div>
@@ -46,7 +46,7 @@ export default async function ProductoDetailPage({ params }: PageProps) {
 
         <div className="flex flex-col justify-center">
           {product.category && (
-            <span className="mb-2 text-xs font-semibold uppercase tracking-widest text-emerald-600">
+            <span className="mb-2 text-xs font-semibold uppercase tracking-widest text-brand-primary">
               {product.category.name}
             </span>
           )}
@@ -55,14 +55,14 @@ export default async function ProductoDetailPage({ params }: PageProps) {
             {product.name}
           </h1>
 
-          <p className="mt-3 text-3xl font-bold text-emerald-700">
+          <p className="mt-3 text-3xl font-bold text-brand-primary">
             {formatPrice(product.price)}
           </p>
 
           <div className="mt-2">
             {product.stock > 0 ? (
-              <span className="inline-flex items-center gap-1.5 text-sm text-emerald-600">
-                <span className="h-2 w-2 rounded-full bg-emerald-500" />
+              <span className="inline-flex items-center gap-1.5 text-sm text-brand-primary">
+                <span className="h-2 w-2 rounded-full bg-brand-accent" />
                 En stock ({product.stock} disponibles)
               </span>
             ) : (

@@ -26,7 +26,7 @@ export default async function AdminProductosPage() {
         </div>
         <Link
           href="/admin/productos/nuevo"
-          className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700"
+          className="inline-flex items-center gap-2 rounded-lg bg-brand-primary px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-primary"
         >
           <Plus className="h-4 w-4" />
           Nuevo Producto
@@ -69,7 +69,7 @@ export default async function AdminProductosPage() {
                   <span
                     className={
                       product.stock > 0
-                        ? "text-emerald-600"
+                        ? "text-brand-primary"
                         : "text-red-500"
                     }
                   >
@@ -80,7 +80,7 @@ export default async function AdminProductosPage() {
                   <span
                     className={`inline-flex rounded-full px-2.5 py-0.5 text-xs font-medium ${
                       product.published
-                        ? "bg-emerald-50 text-emerald-700"
+                        ? "bg-brand-light text-brand-primary"
                         : "bg-gray-100 text-gray-500"
                     }`}
                   >
@@ -91,7 +91,7 @@ export default async function AdminProductosPage() {
                   <div className="flex items-center gap-2">
                     <Link
                       href={`/admin/productos/${product.id}/editar`}
-                      className="rounded-lg p-1.5 text-gray-400 transition hover:bg-emerald-50 hover:text-emerald-600"
+                      className="rounded-lg p-1.5 text-gray-400 transition hover:bg-brand-light hover:text-brand-primary"
                     >
                       <Pencil className="h-4 w-4" />
                     </Link>

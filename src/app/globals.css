@@ -2,15 +2,24 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
-  --brand-green: #047857;
-  --brand-gold: #d97706;
-  --brand-cream: #fef3c7;
+  --foreground: #2D2D2D;
+  --brand-primary: #0B2545;
+  --brand-primary-dark: #06152B;
+  --brand-accent: #0199E4;
+  --brand-accent-dark: #0077B6;
+  --brand-secondary: #07D781;
+  --brand-light: #F0F7FC;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-primary-dark: var(--brand-primary-dark);
+  --color-brand-accent: var(--brand-accent);
+  --color-brand-accent-dark: var(--brand-accent-dark);
+  --color-brand-secondary: var(--brand-secondary);
+  --color-brand-light: var(--brand-light);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }

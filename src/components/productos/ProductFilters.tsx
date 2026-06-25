@@ -39,7 +39,7 @@ export function ProductFilters({
             name="q"
             defaultValue={currentQ}
             placeholder="Buscar productos..."
-            className="w-full rounded-lg border border-gray-200 bg-white py-2.5 pl-10 pr-4 text-sm transition focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+            className="w-full rounded-lg border border-gray-200 bg-white py-2.5 pl-10 pr-4 text-sm transition focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
           />
         </div>
       </form>
@@ -56,8 +56,8 @@ export function ProductFilters({
                 onClick={() => handleCategory(cat.slug)}
                 className={`rounded-full px-4 py-1.5 text-xs font-medium transition ${
                   currentCat === cat.slug
-                    ? "bg-emerald-600 text-white"
-                    : "bg-gray-100 text-gray-600 hover:bg-emerald-50 hover:text-emerald-700"
+                    ? "bg-brand-primary text-white"
+                    : "bg-gray-100 text-gray-600 hover:bg-brand-light hover:text-brand-primary"
                 }`}
               >
                 {cat.name}

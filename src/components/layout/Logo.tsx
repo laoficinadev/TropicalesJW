@@ -8,29 +8,32 @@ interface LogoProps {
 export function Logo({ showText = true, className = "" }: LogoProps) {
   return (
     <Link href="/" className={`flex items-center gap-3 group ${className}`}>
-      <div className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-lg bg-gradient-to-br from-emerald-600 to-amber-500 text-sm font-bold text-white shadow-sm">
+      <div className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-lg bg-brand-primary text-sm font-bold text-white shadow-sm">
         <svg
           viewBox="0 0 40 40"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6"
+          className="h-7 w-7"
         >
           <path
-            d="M20 4C15 4 10 8 10 14C10 20 14 26 20 32C26 26 30 20 30 14C30 8 25 4 20 4Z"
+            d="M20 4C18 4 14 7 14 12C14 17 17 22 20 26C23 22 26 17 26 12C26 7 22 4 20 4Z"
             fill="white"
             fillOpacity="0.3"
-            stroke="white"
-            strokeWidth="1.5"
           />
-          <circle cx="20" cy="14" r="3" fill="white" />
+          <path
+            d="M20 8C18.5 8 16 10 16 13.5C16 17 18 20 20 22.5C22 20 24 17 24 13.5C24 10 21.5 8 20 8Z"
+            fill="white"
+          />
+          <rect x="18.5" y="23" width="3" height="7" rx="1.5" fill="white" />
+          <ellipse cx="20" cy="31" rx="6" ry="2" fill="white" fillOpacity="0.4" />
         </svg>
       </div>
       {showText && (
         <div className="flex items-baseline gap-0.5">
-          <span className="text-xl font-bold tracking-tight text-emerald-700 transition-colors group-hover:text-emerald-600">
+          <span className="text-xl font-bold tracking-tight text-brand-primary transition-colors group-hover:text-brand-accent">
             Tropicales
           </span>
-          <span className="text-xl font-light tracking-tight text-amber-600">
+          <span className="text-xl font-light tracking-tight text-brand-accent">
             JW
           </span>
         </div>

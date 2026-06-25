@@ -40,8 +40,8 @@ export default async function ConfirmacionPage({
   return (
     <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="text-center">
-        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-emerald-50">
-          <CheckCircle className="h-10 w-10 text-emerald-500" />
+        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-brand-light">
+          <CheckCircle className="h-10 w-10 text-brand-accent" />
         </div>
         <h1 className="text-3xl font-bold text-gray-900">
           ¡Pedido Confirmado!
@@ -57,7 +57,7 @@ export default async function ConfirmacionPage({
           <h2 className="text-lg font-semibold text-gray-900">
             Pedido #{order.id.slice(-8).toUpperCase()}
           </h2>
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-50 px-3 py-1 text-xs font-medium text-amber-700">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-accent/10 px-3 py-1 text-xs font-medium text-brand-primary-dark">
             <Package className="h-3 w-3" />
             Pendiente
           </span>
@@ -70,7 +70,7 @@ export default async function ConfirmacionPage({
               className="flex items-center justify-between py-3"
             >
               <div className="flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-50 text-xs font-bold text-emerald-600">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-light text-xs font-bold text-brand-primary">
                   {item.quantity}
                 </span>
                 <div>
@@ -97,8 +97,8 @@ export default async function ConfirmacionPage({
         </div>
       </div>
 
-      <div className="mt-10 rounded-xl border border-amber-100 bg-amber-50 p-4">
-        <p className="text-center text-sm text-amber-800">
+      <div className="mt-10 rounded-xl border border-brand-accent/20 bg-brand-accent/10 p-4">
+        <p className="text-center text-sm text-brand-primary">
           Pagarás en efectivo cuando recibas tu pedido. Te contactaremos
           para coordinar la entrega.
         </p>
@@ -107,7 +107,7 @@ export default async function ConfirmacionPage({
       <div className="mt-8 text-center">
         <Link
           href="/productos"
-          className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700"
+          className="inline-flex items-center gap-2 rounded-xl bg-brand-primary px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-primary"
         >
           Seguir comprando
         </Link>

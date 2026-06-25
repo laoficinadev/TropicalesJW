@@ -4,7 +4,7 @@ import { Leaf, Truck, Shield } from "lucide-react";
 export default function Home() {
   return (
     <div className="flex flex-col">
-      <section className="relative overflow-hidden bg-gradient-to-br from-emerald-700 via-emerald-600 to-amber-500 py-24 sm:py-32">
+      <section className="relative overflow-hidden bg-gradient-to-br from-brand-primary-dark via-brand-primary to-brand-accent py-24 sm:py-32">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(255,255,255,0.1)_0%,_transparent_60%)]" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
@@ -13,7 +13,7 @@ export default function Home() {
             </span>
             <h1 className="mt-4 text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
               Frescura Tropical
-              <span className="block text-amber-200">para tu hogar</span>
+              <span className="block text-brand-accent/30">para tu hogar</span>
             </h1>
             <p className="mt-6 text-lg leading-8 text-white/80">
               Descubre nuestra selección de productos tropicales frescos y de la
@@ -22,7 +22,7 @@ export default function Home() {
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
                 href="/productos"
-                className="inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 text-sm font-semibold text-emerald-700 shadow-sm transition hover:bg-emerald-50 hover:shadow-md"
+                className="inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 text-sm font-semibold text-brand-primary shadow-sm transition hover:bg-brand-light hover:shadow-md"
               >
                 Ver Productos
               </Link>
@@ -58,7 +58,7 @@ export default function Home() {
               },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-light text-brand-primary">
                   <item.icon className="h-6 w-6" />
                 </div>
                 <div>

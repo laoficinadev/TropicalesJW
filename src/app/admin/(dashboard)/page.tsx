@@ -13,14 +13,14 @@ export default async function AdminPage() {
       label: "Productos",
       value: "—",
       href: "/admin/productos",
-      color: "text-emerald-600 bg-emerald-50",
+      color: "text-brand-primary bg-brand-light",
     },
     {
       icon: ShoppingBag,
       label: "Pedidos",
       value: "—",
       href: "/admin/pedidos",
-      color: "text-amber-600 bg-amber-50",
+      color: "text-brand-accent bg-brand-accent/10",
     },
     {
       icon: MessageSquare,

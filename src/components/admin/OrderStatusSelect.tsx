@@ -43,7 +43,7 @@ export function OrderStatusSelect({
     <select
       defaultValue={currentStatus}
       onChange={handleChange}
-      className="rounded-lg border border-gray-200 px-2.5 py-1.5 text-xs font-medium shadow-sm transition focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+      className="rounded-lg border border-gray-200 px-2.5 py-1.5 text-xs font-medium shadow-sm transition focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
     >
       {statuses.map((s) => (
         <option key={s.value} value={s.value}>

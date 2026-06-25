@@ -79,8 +79,8 @@ export default function CheckoutPage() {
     return (
       <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center justify-center text-center">
-          <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-emerald-50">
-            <ShoppingBag className="h-8 w-8 text-emerald-400" />
+          <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-brand-light">
+            <ShoppingBag className="h-8 w-8 text-brand-accent/60" />
           </div>
           <h1 className="text-2xl font-bold text-gray-900">
             No hay productos en tu carrito
@@ -90,7 +90,7 @@ export default function CheckoutPage() {
           </p>
           <Link
             href="/productos"
-            className="mt-6 inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700"
+            className="mt-6 inline-flex items-center gap-2 rounded-xl bg-brand-primary px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-primary"
           >
             <ArrowLeft className="h-4 w-4" />
             Ver Productos
@@ -105,7 +105,7 @@ export default function CheckoutPage() {
       <div className="mb-8">
         <Link
           href="/carrito"
-          className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 transition hover:text-emerald-600"
+          className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 transition hover:text-brand-primary"
         >
           <ArrowLeft className="h-4 w-4" />
           Volver al carrito
@@ -135,7 +135,7 @@ export default function CheckoutPage() {
                       name="name"
                       type="text"
                       required
-                      className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                      className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
                     />
                   </div>
                   <div>
@@ -150,7 +150,7 @@ export default function CheckoutPage() {
                       name="email"
                       type="email"
                       required
-                      className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                      className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
                     />
                   </div>
                 </div>
@@ -166,7 +166,7 @@ export default function CheckoutPage() {
                     id="phone"
                     name="phone"
                     type="tel"
-                    className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                    className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
                   />
                 </div>
 
@@ -182,7 +182,7 @@ export default function CheckoutPage() {
                     name="address"
                     required
                     rows={2}
-                    className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                    className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
                   />
                 </div>
 
@@ -197,7 +197,7 @@ export default function CheckoutPage() {
                     id="notes"
                     name="notes"
                     rows={2}
-                    className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                    className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
                     placeholder="Instrucciones especiales, etc."
                   />
                 </div>
@@ -226,7 +226,7 @@ export default function CheckoutPage() {
             <button
               type="submit"
               disabled={submitting}
-              className="flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 disabled:opacity-50"
+              className="flex w-full items-center justify-center gap-2 rounded-xl bg-brand-primary px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-primary disabled:opacity-50"
             >
               {submitting
                 ? "Procesando..."

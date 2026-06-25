@@ -42,8 +42,8 @@ export default function ContactoPage() {
     return (
       <div className="mx-auto max-w-2xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="text-center">
-          <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-emerald-50">
-            <CheckCircle className="h-10 w-10 text-emerald-500" />
+          <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-brand-light">
+            <CheckCircle className="h-10 w-10 text-brand-accent" />
           </div>
           <h1 className="text-3xl font-bold text-gray-900">
             ¡Mensaje Enviado!
@@ -53,7 +53,7 @@ export default function ContactoPage() {
           </p>
           <button
             onClick={() => setSubmitted(false)}
-            className="mt-8 inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700"
+            className="mt-8 inline-flex items-center gap-2 rounded-xl bg-brand-primary px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-primary"
           >
             Enviar otro mensaje
           </button>
@@ -91,7 +91,7 @@ export default function ContactoPage() {
             },
           ].map((item) => (
             <div key={item.title} className="flex items-start gap-4">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-light text-brand-primary">
                 <item.icon className="h-5 w-5" />
               </div>
               <div>
@@ -122,7 +122,7 @@ export default function ContactoPage() {
                   name="name"
                   type="text"
                   required
-                  className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                  className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
                 />
               </div>
               <div>
@@ -137,7 +137,7 @@ export default function ContactoPage() {
                   name="email"
                   type="email"
                   required
-                  className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                  className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
                 />
               </div>
             </div>
@@ -153,7 +153,7 @@ export default function ContactoPage() {
                 id="phone"
                 name="phone"
                 type="tel"
-                className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
               />
             </div>
 
@@ -169,7 +169,7 @@ export default function ContactoPage() {
                 name="subject"
                 type="text"
                 required
-                className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
               />
             </div>
 
@@ -185,14 +185,14 @@ export default function ContactoPage() {
                 name="message"
                 required
                 rows={5}
-                className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
               />
             </div>
 
             <button
               type="submit"
               disabled={submitting}
-              className="mt-6 inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 disabled:opacity-50"
+              className="mt-6 inline-flex items-center gap-2 rounded-xl bg-brand-primary px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-primary disabled:opacity-50"
             >
               <Send className="h-4 w-4" />
               {submitting ? "Enviando..." : "Enviar Mensaje"}

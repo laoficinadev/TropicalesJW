@@ -15,7 +15,7 @@ export default async function AdminLayout({
     <div className="min-h-screen bg-gray-50">
       <header className="sticky top-0 z-40 border-b bg-white">
         <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          <Link href="/admin" className="font-semibold text-emerald-700">
+          <Link href="/admin" className="font-semibold text-brand-primary">
             TropicalesJW Admin
           </Link>
           <div className="flex items-center gap-4 text-sm text-gray-500">
@@ -42,7 +42,7 @@ export default async function AdminLayout({
               <Link
                 key={item.href}
                 href={item.href}
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-gray-600 transition hover:bg-emerald-50 hover:text-emerald-700"
+                className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-gray-600 transition hover:bg-brand-light hover:text-brand-primary"
               >
                 <item.icon className="h-4 w-4" />
                 {item.label}

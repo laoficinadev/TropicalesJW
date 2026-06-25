@@ -24,11 +24,11 @@ export function CartBadge() {
   return (
     <Link
       href="/carrito"
-      className="relative rounded-full p-2 text-gray-600 transition hover:bg-gray-100 hover:text-emerald-600"
+      className="relative rounded-full p-2 text-gray-600 transition hover:bg-gray-100 hover:text-brand-primary"
     >
       <ShoppingCart className="h-5 w-5" />
       {count > 0 && (
-        <span className="absolute -right-0.5 -top-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-amber-500 text-[10px] font-bold text-white">
+        <span className="absolute -right-0.5 -top-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-brand-accent text-[10px] font-bold text-white">
           {count > 9 ? "9+" : count}
         </span>
       )}

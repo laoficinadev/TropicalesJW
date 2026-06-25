@@ -39,8 +39,8 @@ export default function CarritoPage() {
     return (
       <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center justify-center text-center">
-          <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-emerald-50">
-            <ShoppingBag className="h-8 w-8 text-emerald-400" />
+          <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-brand-light">
+            <ShoppingBag className="h-8 w-8 text-brand-accent/60" />
           </div>
           <h1 className="text-2xl font-bold text-gray-900">
             Tu carrito está vacío
@@ -50,7 +50,7 @@ export default function CarritoPage() {
           </p>
           <Link
             href="/productos"
-            className="mt-6 inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700"
+            className="mt-6 inline-flex items-center gap-2 rounded-xl bg-brand-primary px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-primary"
           >
             <ArrowLeft className="h-4 w-4" />
             Ver Productos
@@ -74,7 +74,7 @@ export default function CarritoPage() {
         </div>
         <Link
           href="/productos"
-          className="hidden items-center gap-2 text-sm font-medium text-emerald-600 transition hover:text-emerald-700 sm:flex"
+          className="hidden items-center gap-2 text-sm font-medium text-brand-primary transition hover:text-brand-primary sm:flex"
         >
           <ArrowLeft className="h-4 w-4" />
           Seguir comprando
@@ -92,7 +92,7 @@ export default function CarritoPage() {
           <CartSummary items={items} />
           <Link
             href="/checkout"
-            className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700"
+            className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-brand-primary px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-primary"
           >
             Proceder al pago
           </Link>
@@ -102,7 +102,7 @@ export default function CarritoPage() {
       <div className="mt-6 text-center sm:hidden">
         <Link
           href="/productos"
-          className="inline-flex items-center gap-2 text-sm font-medium text-emerald-600 transition hover:text-emerald-700"
+          className="inline-flex items-center gap-2 text-sm font-medium text-brand-primary transition hover:text-brand-primary"
         >
           <ArrowLeft className="h-4 w-4" />
           Seguir comprando

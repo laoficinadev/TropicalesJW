@@ -16,7 +16,7 @@ export function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-emerald-100/50 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+    <header className="sticky top-0 z-50 w-full border-b border-brand-primary/10 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Logo />
 
@@ -25,7 +25,7 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="relative transition hover:text-emerald-600 after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-emerald-500 after:transition-all hover:after:w-full"
+              className="relative transition hover:text-brand-primary after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-brand-accent after:transition-all hover:after:w-full"
             >
               {link.label}
             </Link>
@@ -35,14 +35,14 @@ export function Header() {
         <div className="flex items-center gap-1">
           <Link
             href="/buscar"
-            className="rounded-full p-2 text-gray-500 transition hover:bg-emerald-50 hover:text-emerald-600"
+            className="rounded-full p-2 text-gray-500 transition hover:bg-brand-light hover:text-brand-primary"
           >
             <Search className="h-5 w-5" />
           </Link>
           <CartBadge />
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="rounded-full p-2 text-gray-500 transition hover:bg-emerald-50 hover:text-emerald-600 md:hidden"
+            className="rounded-full p-2 text-gray-500 transition hover:bg-brand-light hover:text-brand-primary md:hidden"
             aria-label="Abrir menú"
           >
             {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -51,13 +51,13 @@ export function Header() {
       </div>
 
       {menuOpen && (
-        <div className="border-t border-emerald-100/50 md:hidden animate-fade-in">
+        <div className="border-t border-brand-primary/10 md:hidden animate-fade-in">
           <nav className="flex flex-col gap-1 px-4 py-4">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-lg px-3 py-2.5 text-sm font-medium text-gray-600 transition hover:bg-emerald-50 hover:text-emerald-600"
+                className="rounded-lg px-3 py-2.5 text-sm font-medium text-gray-600 transition hover:bg-brand-light hover:text-brand-primary"
                 onClick={() => setMenuOpen(false)}
               >
                 {link.label}

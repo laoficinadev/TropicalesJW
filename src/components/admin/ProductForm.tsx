@@ -92,7 +92,7 @@ export function ProductForm({
               required
               value={name}
               onChange={(e) => handleNameChange(e.target.value)}
-              className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+              className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
             />
           </div>
 
@@ -106,7 +106,7 @@ export function ProductForm({
               required
               value={slug}
               onChange={(e) => setSlug(e.target.value)}
-              className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+              className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
             />
           </div>
 
@@ -117,7 +117,7 @@ export function ProductForm({
             <select
               name="categoryId"
               defaultValue={product?.categoryId || ""}
-              className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+              className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
             >
               <option value="">Sin categoría</option>
               {categories.map((cat) => (
@@ -137,7 +137,7 @@ export function ProductForm({
               required
               rows={4}
               defaultValue={product?.description || ""}
-              className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+              className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
             />
           </div>
 
@@ -151,7 +151,7 @@ export function ProductForm({
               step="0.01"
               required
               defaultValue={product?.price || ""}
-              className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+              className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
             />
           </div>
 
@@ -163,7 +163,7 @@ export function ProductForm({
               name="stock"
               type="number"
               defaultValue={product?.stock || 0}
-              className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+              className="mt-1 block w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm shadow-sm transition focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
             />
           </div>
         </div>
@@ -174,7 +174,7 @@ export function ProductForm({
               name="published"
               type="checkbox"
               defaultChecked={product?.published ?? true}
-              className="rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"
+              className="rounded border-gray-300 text-brand-primary focus:ring-brand-accent"
             />
             Publicado
           </label>
@@ -183,7 +183,7 @@ export function ProductForm({
               name="featured"
               type="checkbox"
               defaultChecked={product?.featured ?? false}
-              className="rounded border-gray-300 text-amber-500 focus:ring-amber-500"
+              className="rounded border-gray-300 text-brand-accent focus:ring-brand-accent"
             />
             Destacado
           </label>
@@ -201,7 +201,7 @@ export function ProductForm({
         <button
           type="submit"
           disabled={loading}
-          className="rounded-lg bg-emerald-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 disabled:opacity-50"
+          className="rounded-lg bg-brand-primary px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-primary disabled:opacity-50"
         >
           {loading
             ? "Guardando..."
