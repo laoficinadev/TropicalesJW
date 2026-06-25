@@ -91,6 +91,14 @@ html.dark .bg-white\/60 {
   background-color: rgba(21, 34, 56, 0.6);
 }
 
+html.dark .from-white {
+  --tw-gradient-from: var(--surface);
+}
+
+html.dark .to-brand-light\/30 {
+  --tw-gradient-to: color-mix(in srgb, var(--light) 30%, transparent);
+}
+
 /* Section backgrounds */
 html.dark .bg-gray-50 {
   background-color: var(--primary);
