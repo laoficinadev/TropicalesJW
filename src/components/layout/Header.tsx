@@ -11,7 +11,6 @@ export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navLinks = [
-    { href: "/", label: "Inicio" },
     { href: "/productos", label: "Productos" },
     { href: "/contacto", label: "Contacto" },
   ];
