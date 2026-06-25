@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { Search } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { ProductGrid } from "@/components/productos/ProductGrid";
+import { ProductGridSkeleton } from "@/components/ui/ProductGridSkeleton";
 import { useLocale } from "@/lib/i18n";
 
 interface Product {
@@ -67,7 +68,7 @@ function BuscarContent() {
           <p className="text-gray-500">{t("search.searchPlaceholder")}</p>
         </div>
       ) : loading ? (
-        <p className="text-center text-gray-500">{t("common.loading")}</p>
+        <ProductGridSkeleton />
       ) : (
         <ProductGrid
           products={products}

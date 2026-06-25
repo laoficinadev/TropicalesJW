@@ -7,6 +7,7 @@ import { CheckCircle, Package } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { formatPrice } from "@/lib/utils";
 import { useLocale } from "@/lib/i18n";
+import { ConfirmacionSkeleton } from "@/components/ui/ConfirmacionSkeleton";
 
 interface ItemWithProduct {
   id: string;
@@ -50,11 +51,7 @@ function ConfirmacionContent() {
   }, [id]);
 
   if (loading || !order) {
-    return (
-      <div className="mx-auto max-w-2xl px-4 py-20 text-center sm:px-6 lg:px-8">
-        <p className="text-gray-500">{t("common.loading")}</p>
-      </div>
-    );
+    return <ConfirmacionSkeleton />;
   }
 
   return (

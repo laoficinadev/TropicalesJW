@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { ProductGrid } from "@/components/productos/ProductGrid";
 import { ProductFilters } from "@/components/productos/ProductFilters";
+import { ProductGridSkeleton } from "@/components/ui/ProductGridSkeleton";
 import { useLocale } from "@/lib/i18n";
 
 interface Product {
@@ -87,7 +88,7 @@ function ProductosContent() {
 
         <div className="flex-1">
           {loading ? (
-            <p className="text-center text-gray-500">{t("common.loading")}</p>
+            <ProductGridSkeleton />
           ) : (
             <ProductGrid
               products={products}

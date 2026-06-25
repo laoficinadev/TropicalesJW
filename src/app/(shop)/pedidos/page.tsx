@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Package, ArrowLeft } from "lucide-react";
 import { useLocale } from "@/lib/i18n";
+import { OrderSkeleton } from "@/components/ui/OrderSkeleton";
 import { formatPrice } from "@/lib/utils";
 
 interface OrderItem {
@@ -55,8 +56,10 @@ export default function PedidosPage() {
 
   if (status === "loading" || loading) {
     return (
-      <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
-        <p className="text-center text-gray-500">{t("common.loading")}</p>
+      <div className="mx-auto max-w-4xl space-y-4 px-4 py-12 sm:px-6 lg:px-8">
+        <OrderSkeleton />
+        <OrderSkeleton />
+        <OrderSkeleton />
       </div>
     );
   }
