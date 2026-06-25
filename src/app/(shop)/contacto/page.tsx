@@ -77,12 +77,12 @@ export default function ContactoPage() {
             {
               icon: Mail,
               title: "Email",
-              content: "info@tropicalesjw.com",
+              content: "theoffice7075@gmail.com",
             },
             {
               icon: Phone,
               title: "Teléfono",
-              content: "+506 8888-8888",
+              content: "+53 56671258",
             },
             {
               icon: MapPin,

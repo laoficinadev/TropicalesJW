@@ -42,11 +42,11 @@ export function Footer() {
             <ul className="space-y-3 text-sm text-gray-500">
               <li className="flex items-center gap-2">
                 <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                info@tropicalesjw.com
+                theoffice7075@gmail.com
               </li>
               <li className="flex items-center gap-2">
                 <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                +506 8888-8888
+                +53 56671258
               </li>
             </ul>
           </div>
