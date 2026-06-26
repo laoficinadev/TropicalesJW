@@ -37,8 +37,6 @@ export function Header() {
       <div className="flex h-16 items-center gap-2 px-2">
         <Logo />
 
-        <DarkModeToggle />
-
         {/* Desktop search bar */}
         <div className="hidden md:flex flex-1 max-w-xl mx-auto">
           <form onSubmit={handleSearch} className="flex w-full">
@@ -59,6 +57,8 @@ export function Header() {
 
         {/* Desktop actions */}
         <div className="hidden md:flex items-center gap-1">
+          <DarkModeToggle />
+
           <button
             onClick={toggleLanguage}
             className="rounded-lg px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-gray-500 transition hover:bg-brand-light hover:text-brand-accent"
