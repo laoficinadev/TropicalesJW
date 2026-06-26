@@ -15,7 +15,7 @@ export function Logo({ showText = true, className = "", lightText = false }: Log
         alt="Tropicales JW"
         height={40}
         width={63}
-        className="object-contain shrink-0"
+        className="object-contain shrink-0 logo-image"
         priority
       />
       {showText && (
