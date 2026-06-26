@@ -229,11 +229,11 @@ html.dark footer .text-gray-400 {
 
 html.dark .logo-text {
   color: var(--text);
-  text-shadow: 0 0 4px rgba(255,255,255,0.4), 0 0 8px rgba(255,255,255,0.2);
+  text-shadow: -1px -1px 0 rgba(255,255,255,0.7), 1px -1px 0 rgba(255,255,255,0.7), -1px 1px 0 rgba(255,255,255,0.7), 1px 1px 0 rgba(255,255,255,0.7);
 }
 
 html.dark .logo-image {
-  filter: drop-shadow(0 0 3px rgba(255,255,255,0.3)) drop-shadow(0 0 6px rgba(255,255,255,0.15));
+  filter: drop-shadow(1px 0 0 rgba(255,255,255,0.5)) drop-shadow(-1px 0 0 rgba(255,255,255,0.5)) drop-shadow(0 1px 0 rgba(255,255,255,0.5)) drop-shadow(0 -1px 0 rgba(255,255,255,0.5));
 }
 
 /* Admin login */
