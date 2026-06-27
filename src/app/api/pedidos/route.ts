@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
 import { auth } from "@/lib/auth";
+import { sendOrderEmail } from "@/lib/email";
 
 export async function POST(request: Request) {
   try {
@@ -42,9 +43,10 @@ export async function POST(request: Request) {
     if (orderError) throw orderError;
 
     const items = body.items.map(
-      (item: { productId: string; price: number; quantity: number }) => ({
+      (item: { productId: string; name: string; price: number; quantity: number }) => ({
         orderId: order.id,
         productId: item.productId,
+        name: item.name,
         price: item.price,
         quantity: item.quantity,
       })
@@ -55,6 +57,18 @@ export async function POST(request: Request) {
       .insert(items);
 
     if (itemsError) throw itemsError;
+
+    // Send email notification
+    sendOrderEmail({
+      orderId: order.id,
+      customerName: body.customerName,
+      customerEmail: body.customerEmail,
+      customerPhone: body.customerPhone,
+      shippingAddress: body.shippingAddress,
+      customerNotes: body.customerNotes,
+      items: body.items,
+      total: body.total,
+    });
 
     return NextResponse.json(order, { status: 201 });
   } catch {
