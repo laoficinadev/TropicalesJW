@@ -15,7 +15,8 @@ export async function GET() {
     .from("Order")
     .select("*, orderItems:OrderItem(*)")
     .eq("userId", session.user.id)
-    .order("createdAt", { ascending: false });
+    .order("createdAt", { ascending: false })
+    .limit(50);
 
   if (error) {
     return NextResponse.json({ error: "Error al cargar pedidos" }, { status: 500 });

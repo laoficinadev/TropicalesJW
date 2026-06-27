@@ -1,12 +1,8 @@
-"use client";
-
 import Link from "next/link";
 import { Logo } from "./Logo";
-import { useLocale } from "@/lib/i18n";
+import { t } from "@/lib/i18n/server";
 
-export function Footer() {
-  const { t } = useLocale();
-
+export async function Footer() {
   return (
     <footer className="mt-auto bg-brand-primary">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -14,18 +10,18 @@ export function Footer() {
           <div className="space-y-4">
             <Logo lightText />
             <p className="text-sm leading-relaxed text-gray-300">
-              {t("footer.description")}
+              {await t("footer.description")}
             </p>
           </div>
 
           <div>
-            <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-white/90">
-              {t("footer.links")}
-            </h3>
+              <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-white/90">
+                {await t("footer.links")}
+              </h3>
             <ul className="space-y-3">
               {[
-                { href: "/productos", label: t("nav.products") },
-                { href: "/contacto", label: t("nav.contact") },
+                  { href: "/productos", label: await t("nav.products") },
+                  { href: "/contacto", label: await t("nav.contact") },
               ].map((link) => (
                 <li key={link.href}>
                   <Link
@@ -40,9 +36,9 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-white/90">
-              {t("footer.contact")}
-            </h3>
+              <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-white/90">
+                {await t("footer.contact")}
+              </h3>
             <ul className="space-y-3 text-sm text-gray-300">
               <li className="flex items-center gap-2">
                 <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand-accent" />
@@ -56,20 +52,20 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-white/90">
-              {t("footer.hours")}
-            </h3>
+              <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-white/90">
+                {await t("footer.hours")}
+              </h3>
             <ul className="space-y-3 text-sm text-gray-300">
-              <li>{t("contact.weekdays")}</li>
-              <li>{t("contact.saturday")}</li>
-              <li className="text-gray-400">{t("contact.sunday")}</li>
+              <li>{await t("contact.weekdays")}</li>
+              <li>{await t("contact.saturday")}</li>
+              <li className="text-gray-400">{await t("contact.sunday")}</li>
             </ul>
           </div>
         </div>
 
         <div className="mt-10 border-t border-white/10 pt-8 text-center text-sm text-gray-400">
           &copy; {new Date().getFullYear()} TropicalesJW.{" "}
-          {t("footer.rights")}
+          {await t("footer.rights")}
         </div>
       </div>
     </footer>

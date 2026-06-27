@@ -2,12 +2,14 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
 import { ArrowLeft, ShoppingBag, CreditCard } from "lucide-react";
 import Link from "next/link";
 import toast from "react-hot-toast";
 import { formatPrice } from "@/lib/utils";
-import { CartSummary } from "@/components/carrito/CartSummary";
 import { useLocale } from "@/lib/i18n";
+
+const CartSummary = dynamic(() => import("@/components/carrito/CartSummary").then((m) => m.CartSummary));
 
 interface CartItem {
   id: string;

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { ShoppingCart } from "lucide-react";
 import toast from "react-hot-toast";
@@ -49,10 +50,12 @@ export function ProductCard({ product }: { product: Product }) {
     >
       <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-brand-light to-brand-accent/10">
         {images[0] ? (
-          <img
+          <Image
             src={images[0]}
             alt={product.name}
-            className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+            fill
+            sizes="(max-width: 768px) 50vw, 33vw"
+            className="object-cover transition duration-300 group-hover:scale-105"
           />
         ) : (
           <div className="flex h-full items-center justify-center">

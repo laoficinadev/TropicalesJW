@@ -11,7 +11,8 @@ export async function GET() {
   const { data: products } = await supabase
     .from("Product")
     .select("*, category:Category(*)")
-    .order("createdAt", { ascending: false });
+    .order("createdAt", { ascending: false })
+    .limit(50);
 
   return NextResponse.json(products || []);
 }

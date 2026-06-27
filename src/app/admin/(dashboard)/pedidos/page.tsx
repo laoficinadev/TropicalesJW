@@ -12,7 +12,8 @@ export default async function AdminPedidosPage() {
   const { data: orders } = await supabase
     .from("Order")
     .select("*, items:OrderItem(*, product:Product(*))")
-    .order("createdAt", { ascending: false });
+    .order("createdAt", { ascending: false })
+    .limit(50);
 
   return (
     <div>

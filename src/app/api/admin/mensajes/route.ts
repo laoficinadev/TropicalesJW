@@ -11,7 +11,8 @@ export async function GET() {
   const { data: messages } = await supabase
     .from("ContactMessage")
     .select("*")
-    .order("createdAt", { ascending: false });
+    .order("createdAt", { ascending: false })
+    .limit(50);
 
   return NextResponse.json(messages || []);
 }

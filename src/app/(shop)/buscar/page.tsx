@@ -2,11 +2,13 @@
 
 import { Suspense, useEffect, useState, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
+import dynamic from "next/dynamic";
 import { Search } from "lucide-react";
 import { supabase } from "@/lib/supabase";
-import { ProductGrid } from "@/components/productos/ProductGrid";
 import { ProductGridSkeleton } from "@/components/ui/ProductGridSkeleton";
 import { useLocale } from "@/lib/i18n";
+
+const ProductGrid = dynamic(() => import("@/components/productos/ProductGrid").then((m) => m.ProductGrid));
 
 interface Product {
   id: string;
@@ -39,7 +41,8 @@ function BuscarContent() {
       .select("*, category:Category(*)")
       .eq("published", true)
       .or(`name.ilike.%${q}%,description.ilike.%${q}%`)
-      .order("createdAt", { ascending: false });
+      .order("createdAt", { ascending: false })
+      .limit(50);
 
     setProducts((data || []) as unknown as Product[]);
     setLoading(false);

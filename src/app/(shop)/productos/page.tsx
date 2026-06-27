@@ -2,11 +2,13 @@
 
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import dynamic from "next/dynamic";
 import { supabase } from "@/lib/supabase";
-import { ProductGrid } from "@/components/productos/ProductGrid";
-import { ProductFilters } from "@/components/productos/ProductFilters";
 import { ProductGridSkeleton } from "@/components/ui/ProductGridSkeleton";
 import { useLocale } from "@/lib/i18n";
+
+const ProductGrid = dynamic(() => import("@/components/productos/ProductGrid").then((m) => m.ProductGrid));
+const ProductFilters = dynamic(() => import("@/components/productos/ProductFilters").then((m) => m.ProductFilters));
 
 interface Product {
   id: string;
@@ -57,13 +59,14 @@ function ProductosContent() {
         }
       }
 
-      query = query.order("createdAt", { ascending: false });
+      query = query.order("createdAt", { ascending: false }).limit(50);
 
       const { data: productsData } = await query;
       const { data: categoriesData } = await supabase
         .from("Category")
         .select("*")
-        .order("name", { ascending: true });
+        .order("name", { ascending: true })
+        .limit(50);
 
       setProducts((productsData || []) as unknown as Product[]);
       setCategories((categoriesData || []).map((c) => ({ name: c.name, slug: c.slug })));

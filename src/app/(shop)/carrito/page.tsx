@@ -1,11 +1,13 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { ShoppingBag, ArrowLeft } from "lucide-react";
 import { CartItem } from "@/components/carrito/CartItem";
-import { CartSummary } from "@/components/carrito/CartSummary";
 import { useLocale } from "@/lib/i18n";
+
+const CartSummary = dynamic(() => import("@/components/carrito/CartSummary").then((m) => m.CartSummary));
 
 interface CartItemData {
   id: string;

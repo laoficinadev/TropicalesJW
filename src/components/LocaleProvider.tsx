@@ -31,6 +31,7 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
     setLocaleState(newLocale);
     try {
       localStorage.setItem("locale", newLocale);
+      document.cookie = `locale=${newLocale};path=/;max-age=${60 * 60 * 24 * 365}`;
       document.documentElement.lang = newLocale === "en" ? "en" : "es";
     } catch {}
   }, []);

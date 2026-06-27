@@ -33,7 +33,7 @@ export async function GET(request: Request) {
     query = query.eq("featured", true);
   }
 
-  query = query.order("createdAt", { ascending: false });
+  query = query.order("createdAt", { ascending: false }).limit(50);
 
   const { data: products } = await query;
 

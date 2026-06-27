@@ -10,7 +10,8 @@ export default async function AdminMensajesPage() {
   const { data: messages } = await supabase
     .from("ContactMessage")
     .select("*")
-    .order("createdAt", { ascending: false });
+    .order("createdAt", { ascending: false })
+    .limit(50);
 
   return (
     <div>
