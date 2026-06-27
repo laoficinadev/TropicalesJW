@@ -235,17 +235,12 @@ html.dark .logo-text {
   color: var(--text);
 }
 
-.logo-border {
-  padding: 1.5px;
-  border-radius: 4px;
-  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-  display: inline-flex;
-  line-height: 0;
-}
-
-.logo-border img {
-  border-radius: 3px;
-  display: block;
+html.dark .logo-image {
+  filter:
+    drop-shadow(0.5px 0 0 var(--gradient-end))
+    drop-shadow(-0.5px 0 0 var(--gradient-start))
+    drop-shadow(0 0.5px 0 var(--gradient-end))
+    drop-shadow(0 -0.5px 0 var(--gradient-start));
 }
 
 /* Admin login */
