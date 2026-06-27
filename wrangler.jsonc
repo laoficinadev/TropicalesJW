@@ -12,7 +12,7 @@
   },
   "vars": {
     "SUPABASE_URL": "https://dhucjrqfsxgwixrkuynb.supabase.co",
-    "AUTH_URL": "https://tropicalesjw.online-shop-tropicales.workers.dev",
+    "AUTH_URL": "https://online-shop-tropicales.tropicalesjw.workers.dev",
     "NEXTJS_ENV": "production"
   }
 }
