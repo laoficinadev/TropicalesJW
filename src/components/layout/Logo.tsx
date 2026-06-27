@@ -10,14 +10,16 @@ interface LogoProps {
 export function Logo({ showText = true, className = "", lightText = false }: LogoProps) {
   return (
     <Link href="/" className={`flex items-center gap-2 group ${className}`}>
-      <Image
-        src="/logo.png"
-        alt="Tropicales JW"
-        height={40}
-        width={63}
-        className="object-contain shrink-0 logo-image"
-        priority
-      />
+      <div className="logo-border shrink-0">
+        <Image
+          src="/logo.png"
+          alt="Tropicales JW"
+          height={40}
+          width={63}
+          className="object-contain"
+          priority
+        />
+      </div>
       {showText && (
         <span
           className={`text-xl sm:text-2xl font-bold tracking-tight logo-text transition-colors group-hover:text-brand-accent whitespace-nowrap ${
