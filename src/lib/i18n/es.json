@@ -150,6 +150,7 @@
     "registerError": "Error al crear la cuenta",
     "registerSuccess": "Cuenta creada exitosamente",
     "logoutSuccess": "Sesión cerrada",
+    "loginSuccess": "Inicio de sesión exitoso",
     "requiredField": "Este campo es requerido"
   },
   "orders": {

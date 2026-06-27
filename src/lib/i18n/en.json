@@ -150,6 +150,7 @@
     "registerError": "Error creating account",
     "registerSuccess": "Account created successfully",
     "logoutSuccess": "Signed out",
+    "loginSuccess": "Logged in successfully",
     "requiredField": "This field is required"
   },
   "orders": {
