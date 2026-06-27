@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { slugify } from "@/lib/utils";
+import { ImageManager } from "@/components/admin/ImageManager";
 
 interface ProductData {
   id?: string;
@@ -30,6 +31,9 @@ export function ProductForm({
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState(product?.name || "");
   const [slug, setSlug] = useState(product?.slug || "");
+  const [images, setImages] = useState<string[]>(() => {
+    try { return JSON.parse(product?.images || "[]"); } catch { return []; }
+  });
 
   function handleNameChange(value: string) {
     setName(value);
@@ -51,7 +55,7 @@ export function ProductForm({
       published: form.get("published") === "on",
       featured: form.get("featured") === "on",
       categoryId: form.get("categoryId") || null,
-      images: [],
+      images: JSON.stringify(images),
     };
 
     const url = isEdit
@@ -188,6 +192,10 @@ export function ProductForm({
             Destacado
           </label>
         </div>
+      </div>
+
+      <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+        <ImageManager images={images} onChange={setImages} />
       </div>
 
       <div className="flex items-center justify-end gap-4">

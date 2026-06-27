@@ -2,6 +2,41 @@ import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
 import { auth } from "@/lib/auth";
 
+export async function PATCH(
+  request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const session = await auth();
+  if (!session?.user) {
+    return NextResponse.json({ error: "No autorizado" }, { status: 401 });
+  }
+
+  const { id } = await params;
+
+  try {
+    const body = await request.json();
+    const updates: Record<string, unknown> = {};
+    if (body.published !== undefined) updates.published = body.published;
+    if (body.price !== undefined) updates.price = parseFloat(body.price);
+    if (body.stock !== undefined) updates.stock = parseInt(body.stock) || 0;
+
+    const { data: product, error } = await supabase
+      .from("Product")
+      .update(updates)
+      .eq("id", id)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return NextResponse.json(product);
+  } catch {
+    return NextResponse.json(
+      { error: "Error al actualizar producto" },
+      { status: 400 }
+    );
+  }
+}
+
 export async function PUT(
   request: Request,
   { params }: { params: Promise<{ id: string }> }

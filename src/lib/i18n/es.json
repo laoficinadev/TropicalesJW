@@ -97,6 +97,11 @@
     "contactIfProblems": "Si tienes algún problema con tu pedido, contáctanos al",
     "returnToShop": "Volver a la Tienda"
   },
+  "notFound": {
+    "title": "Página no encontrada",
+    "subtitle": "La página que buscas no existe o ha sido movida",
+    "goHome": "Volver al inicio"
+  },
   "contact": {
     "title": "Contacto",
     "subtitle": "Estamos aquí para ayudarte",

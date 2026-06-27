@@ -1,10 +1,11 @@
 import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
-import { formatPrice } from "@/lib/utils";
 import Link from "next/link";
-import { Pencil, Plus, Trash2 } from "lucide-react";
+import { Pencil, Plus } from "lucide-react";
 import { DeleteProductButton } from "@/components/admin/DeleteProductButton";
+import { TogglePublishedButton } from "@/components/admin/TogglePublishedButton";
+import { QuickPriceEdit } from "@/components/admin/QuickPriceEdit";
 
 export default async function AdminProductosPage() {
   const session = await auth();
@@ -63,17 +64,11 @@ export default async function AdminProductosPage() {
                 <td className="px-4 py-3 text-gray-600">
                   {product.category?.name || "—"}
                 </td>
-                <td className="px-4 py-3 font-medium text-gray-900">
-                  {formatPrice(product.price)}
+                <td className="px-4 py-3">
+                  <QuickPriceEdit productId={product.id} currentPrice={Number(product.price)} />
                 </td>
                 <td className="px-4 py-3">
-                  <span
-                    className={
-                      product.stock > 0
-                        ? "text-brand-primary"
-                        : "text-red-500"
-                    }
-                  >
+                  <span className={product.stock > 0 ? "text-brand-primary" : "text-red-500"}>
                     {product.stock}
                   </span>
                 </td>
@@ -89,7 +84,8 @@ export default async function AdminProductosPage() {
                   </span>
                 </td>
                 <td className="px-4 py-3">
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1">
+                    <TogglePublishedButton productId={product.id} published={product.published} />
                     <Link
                       href={`/admin/productos/${product.id}/editar`}
                       className="rounded-lg p-1.5 text-gray-400 transition hover:bg-brand-light hover:text-brand-primary"

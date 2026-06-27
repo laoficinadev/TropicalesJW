@@ -1,5 +1,15 @@
+import type { Metadata } from "next";
 import { Leaf, Truck, Shield } from "lucide-react";
 import { t } from "@/lib/i18n/server";
+
+export const metadata: Metadata = {
+  title: "TropicalesJW - Productos Tropicales Frescos",
+  description: "Descubre nuestra selección de productos tropicales frescos y de la mejor calidad. Envíos a todo el país.",
+  openGraph: {
+    title: "TropicalesJW - Productos Tropicales Frescos",
+    description: "Descubre nuestra selección de productos tropicales frescos y de la mejor calidad.",
+  },
+};
 
 export default async function Home() {
   const features = [
