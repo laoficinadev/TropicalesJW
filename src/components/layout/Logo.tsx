@@ -21,7 +21,7 @@ export function Logo({ showText = true, className = "", lightText = false }: Log
       {showText && (
         <span
           className={`text-xl sm:text-2xl font-bold tracking-tight logo-text transition-colors group-hover:text-brand-accent whitespace-nowrap ${
-            lightText ? "text-white" : "text-brand-primary"
+            lightText ? "text-white" : "text-gradient-primary"
           }`}
         >
           TropicalesJW
