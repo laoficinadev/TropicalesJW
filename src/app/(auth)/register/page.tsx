@@ -63,7 +63,7 @@ export default function RegisterPage() {
           <div className="mb-4 flex justify-center">
             <Logo showText={false} />
           </div>
-          <h1 className="text-xl font-semibold text-gray-900">
+          <h1 className="text-xl font-semibold text-gradient-primary">
             {t("auth.registerTitle")}
           </h1>
           <p className="mt-1 text-sm text-gray-500">

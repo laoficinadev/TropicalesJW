@@ -88,7 +88,7 @@ export default function PedidosPage() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">{t("orders.title")}</h1>
+        <h1 className="text-3xl font-bold text-gradient-primary">{t("orders.title")}</h1>
         <p className="mt-1 text-gray-500">{orders.length} pedido{orders.length !== 1 ? "s" : ""}</p>
       </div>
 

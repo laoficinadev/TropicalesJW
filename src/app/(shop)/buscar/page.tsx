@@ -52,7 +52,7 @@ function BuscarContent() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">{t("search.title")}</h1>
+        <h1 className="text-3xl font-bold text-gradient-primary">{t("search.title")}</h1>
         {q && (
           <p className="mt-2 text-gray-500">
             {t("search.resultsFor")} &ldquo;<span className="font-medium text-gray-900">{q}</span>&rdquo;

@@ -112,7 +112,7 @@ export default function CheckoutPage() {
           <ArrowLeft className="h-4 w-4" />
           {t("checkout.backToCart")}
         </Link>
-        <h1 className="mt-2 text-3xl font-bold text-gray-900">{t("checkout.title")}</h1>
+        <h1 className="mt-2 text-3xl font-bold text-gradient-primary">{t("checkout.title")}</h1>
       </div>
 
       <form onSubmit={handleSubmit}>

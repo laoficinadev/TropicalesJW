@@ -17,6 +17,8 @@
   --surface: #ffffff;
   --shadow: 0 4px 20px rgba(0,0,0,0.1);
   --transition: 0.3s ease;
+  --gradient-start: #0D8A3F;
+  --gradient-end: #B45309;
 }
 
 html.dark {
@@ -34,6 +36,8 @@ html.dark {
   --surface: #152238;
   --shadow: 0 4px 20px rgba(0,0,0,0.5);
   --transition: 0.3s ease;
+  --gradient-start: #0FAF4B;
+  --gradient-end: #D97706;
 }
 
 @theme inline {
@@ -238,4 +242,11 @@ html.dark .logo-image {
 /* Admin login */
 html.dark .from-brand-light {
   --tw-gradient-from: var(--primary);
+}
+
+.text-gradient-primary {
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }

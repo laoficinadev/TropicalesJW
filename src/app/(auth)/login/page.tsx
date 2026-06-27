@@ -45,7 +45,7 @@ export default function LoginPage() {
           <div className="mb-4 flex justify-center">
             <Logo showText={false} />
           </div>
-          <h1 className="text-xl font-semibold text-gray-900">
+          <h1 className="text-xl font-semibold text-gradient-primary">
             {t("auth.loginTitle")}
           </h1>
           <p className="mt-1 text-sm text-gray-500">

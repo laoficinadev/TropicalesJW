@@ -131,7 +131,7 @@ export default function ProductoSlugPage() {
             </Link>
           )}
 
-          <h1 className="mt-3 text-3xl font-bold tracking-tight text-gray-900">
+          <h1 className="mt-3 text-3xl font-bold tracking-tight text-gradient-primary">
             {product.name}
           </h1>
 

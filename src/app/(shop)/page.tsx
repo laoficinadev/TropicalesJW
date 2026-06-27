@@ -33,7 +33,7 @@ export default function Home() {
                   <item.icon className="h-6 w-6" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900">{item.title}</h3>
+                  <h3 className="font-semibold text-gradient-primary">{item.title}</h3>
                   <p className="mt-1 text-sm text-gray-500">{item.desc}</p>
                 </div>
               </div>
@@ -45,7 +45,7 @@ export default function Home() {
       <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tight text-gradient-primary sm:text-4xl">
               {t("home.featured")}
             </h2>
             <p className="mt-4 text-lg text-gray-500">
