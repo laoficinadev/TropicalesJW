@@ -235,14 +235,6 @@ html.dark .logo-text {
   color: var(--text);
 }
 
-.logo-image {
-  filter:
-    drop-shadow(0.5px 0 0 rgba(255,255,255,0.6))
-    drop-shadow(-0.5px 0 0 rgba(255,255,255,0.6))
-    drop-shadow(0 0.5px 0 rgba(255,255,255,0.6))
-    drop-shadow(0 -0.5px 0 rgba(255,255,255,0.6));
-}
-
 /* Admin login */
 html.dark .from-brand-light {
   --tw-gradient-from: var(--primary);

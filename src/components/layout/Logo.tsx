@@ -11,12 +11,13 @@ export function Logo({ showText = true, className = "", lightText = false }: Log
   return (
     <Link href="/" className={`flex items-center gap-2 group ${className}`}>
       <Image
-        src="/logo.png"
+        src="/logo.webp"
         alt="Tropicales JW"
         height={40}
         width={63}
-        className="object-contain shrink-0 logo-image"
+        className="shrink-0"
         priority
+        unoptimized
       />
       {showText && (
         <span
