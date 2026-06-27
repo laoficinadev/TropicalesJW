@@ -7,9 +7,6 @@ export const metadata: Metadata = {
   title: "TropicalesJW - Productos Tropicales",
   description:
     "Tienda online de TropicalesJW. Los mejores productos tropicales frescos y de calidad.",
-  icons: {
-    icon: "/logo.png",
-  },
 };
 
 export default function RootLayout({

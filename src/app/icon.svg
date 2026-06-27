@@ -1,11 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2160 1368">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
   <defs>
-    <filter id="whiteBorder" x="-2%" y="-2%" width="104%" height="104%">
+    <filter id="whiteBorder" x="-20%" y="-20%" width="140%" height="140%">
       <feDropShadow dx="1" dy="0" stdDeviation="0" flood-color="white" flood-opacity="0.5"/>
       <feDropShadow dx="-1" dy="0" stdDeviation="0" flood-color="white" flood-opacity="0.5"/>
       <feDropShadow dx="0" dy="1" stdDeviation="0" flood-color="white" flood-opacity="0.5"/>
       <feDropShadow dx="0" dy="-1" stdDeviation="0" flood-color="white" flood-opacity="0.5"/>
     </filter>
   </defs>
-  <image href="/logo.png" width="2160" height="1368" filter="url(#whiteBorder)"/>
+  <image href="/logo.png" width="16" height="16" preserveAspectRatio="xMidYMid meet" filter="url(#whiteBorder)"/>
 </svg>
