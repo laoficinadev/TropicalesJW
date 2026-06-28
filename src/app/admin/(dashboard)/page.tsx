@@ -80,7 +80,7 @@ export default async function AdminPage() {
       label: "Productos",
       value: String(totalProducts || 0),
       href: "/admin/productos",
-      color: "text-brand-primary bg-brand-light",
+      color: "text-brand-accent bg-brand-accent/10",
     },
     {
       icon: ShoppingBag,
@@ -94,14 +94,14 @@ export default async function AdminPage() {
       label: "Mensajes",
       value: String(totalMessages || 0),
       href: "/admin/mensajes",
-      color: "text-blue-600 bg-blue-50",
+      color: "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30",
     },
     {
       icon: TrendingUp,
       label: "Ingresos",
       value: formatPrice(totalRevenue),
       href: "/admin/pedidos",
-      color: "text-emerald-600 bg-emerald-50",
+      color: "text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/30",
     },
   ];
 
@@ -162,7 +162,7 @@ export default async function AdminPage() {
               {top5.map((product, i) => (
                 <div key={product.name} className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-light text-xs font-bold text-brand-primary">
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 text-xs font-bold text-gray-600 dark:text-gray-300">
                       {i + 1}
                     </span>
                     <span className="text-sm text-gray-700">{product.name}</span>

@@ -51,7 +51,7 @@ export default async function AdminProductosPage() {
             {(products || []).map((product) => (
               <tr
                 key={product.id}
-                className="transition hover:bg-gray-50/50"
+                className="transition hover:bg-gray-50/50 dark:hover:bg-gray-800/50"
               >
                 <td className="px-4 py-3">
                   <div>
@@ -68,7 +68,7 @@ export default async function AdminProductosPage() {
                   <QuickPriceEdit productId={product.id} currentPrice={Number(product.price)} />
                 </td>
                 <td className="px-4 py-3">
-                  <span className={product.stock > 0 ? "text-brand-primary" : "text-red-500"}>
+                  <span className={product.stock > 0 ? "dark:text-gray-100 text-gray-900" : "text-red-500"}>
                     {product.stock}
                   </span>
                 </td>
@@ -76,7 +76,7 @@ export default async function AdminProductosPage() {
                   <span
                     className={`inline-flex rounded-full px-2.5 py-0.5 text-xs font-medium ${
                       product.published
-                        ? "bg-brand-light text-brand-primary"
+                        ? "dark:bg-green-900 dark:text-green-300 bg-green-100 text-green-700"
                         : "bg-gray-100 text-gray-500"
                     }`}
                   >
