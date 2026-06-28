@@ -3,7 +3,6 @@
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
-import { supabase } from "@/lib/supabase";
 import { ProductGridSkeleton } from "@/components/ui/ProductGridSkeleton";
 import { useLocale } from "@/lib/i18n";
 
@@ -36,44 +35,30 @@ function ProductosContent() {
   useEffect(() => {
     async function load() {
       setLoading(true);
-      const q = searchParams.get("q");
-      const categoria = searchParams.get("categoria");
+      try {
+        const params = new URLSearchParams();
+        const q = searchParams.get("q");
+        const categoria = searchParams.get("categoria");
+        if (q) params.set("q", q);
+        if (categoria) params.set("categoria", categoria);
 
-      let query = supabase
-        .from("Product")
-        .select("*, category:Category(*)")
-        .eq("published", true);
+        const [productsRes, categoriesRes] = await Promise.all([
+          fetch(`/api/productos?${params.toString()}`),
+          fetch("/api/categorias"),
+        ]);
+        const productsData = await productsRes.json();
+        const categoriesData = await categoriesRes.json();
 
-      if (q) {
-        query = query.or(`name.ilike.%${q}%,description.ilike.%${q}%`);
+        setProducts(productsData);
+        setCategories(categoriesData.map((c: { name: string; slug: string }) => ({ name: c.name, slug: c.slug })));
+      } catch (err) {
+        console.error("Error loading products:", err);
+      } finally {
+        setLoading(false);
       }
-
-      if (categoria) {
-        const { data: cat } = await supabase
-          .from("Category")
-          .select("id")
-          .eq("slug", categoria)
-          .single();
-        if (cat) {
-          query = query.eq("categoryId", cat.id);
-        }
-      }
-
-      query = query.order("createdAt", { ascending: false }).limit(50);
-
-      const { data: productsData } = await query;
-      const { data: categoriesData } = await supabase
-        .from("Category")
-        .select("*")
-        .order("name", { ascending: true })
-        .limit(50);
-
-      setProducts((productsData || []) as unknown as Product[]);
-      setCategories((categoriesData || []).map((c) => ({ name: c.name, slug: c.slug })));
-      setLoading(false);
     }
     load();
-  }, [searchParams]);
+  }, [searchParams.toString()]);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">

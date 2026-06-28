@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Leaf, Truck, Shield } from "lucide-react";
 import { t } from "@/lib/i18n/server";
+import { supabase } from "@/lib/supabase";
+import { HomeProductGrid } from "@/components/productos/HomeProductGrid";
 
 export const metadata: Metadata = {
   title: "TropicalesJW - Productos Tropicales Frescos",
@@ -10,6 +13,17 @@ export const metadata: Metadata = {
     description: "Descubre nuestra selección de productos tropicales frescos y de la mejor calidad.",
   },
 };
+
+interface Product {
+  id: string;
+  name: string;
+  slug: string;
+  description: string;
+  price: number;
+  images: string;
+  stock: number;
+  category?: { name: string; slug: string } | null;
+}
 
 export default async function Home() {
   const features = [
@@ -31,7 +45,15 @@ export default async function Home() {
   ];
 
   const featuredTitle = await t("home.featured");
-  const comingSoon = await t("common.comingSoon");
+  const viewAll = await t("products.viewAll");
+
+  const { data: featuredProducts } = await supabase
+    .from("Product")
+    .select("*, category:Category(*)")
+    .eq("published", true)
+    .eq("featured", true)
+    .order("createdAt", { ascending: false })
+    .limit(3);
 
   return (
     <div className="flex flex-col">
@@ -55,13 +77,33 @@ export default async function Home() {
 
       <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-gradient-primary sm:text-4xl">
-              {featuredTitle}
-            </h2>
-            <p className="mt-4 text-lg text-gray-500">
-              {comingSoon}
-            </p>
+          <div className="mb-10 flex items-end justify-between">
+            <div>
+              <h2 className="text-3xl font-bold tracking-tight text-gradient-primary sm:text-4xl">
+                {featuredTitle}
+              </h2>
+            </div>
+            <Link
+              href="/productos"
+              className="hidden sm:inline-flex items-center gap-1 text-sm font-medium text-brand-accent hover:text-brand-accent-dark transition"
+            >
+              {viewAll} &rarr;
+            </Link>
+          </div>
+
+          {featuredProducts && featuredProducts.length > 0 ? (
+            <HomeProductGrid products={featuredProducts as unknown as Product[]} />
+          ) : (
+            <p className="text-center text-lg text-gray-500">{await t("common.comingSoon")}</p>
+          )}
+
+          <div className="mt-10 text-center sm:hidden">
+            <Link
+              href="/productos"
+              className="inline-flex items-center gap-1 text-sm font-medium text-brand-accent hover:text-brand-accent-dark transition"
+            >
+              {viewAll} &rarr;
+            </Link>
           </div>
         </div>
       </section>
