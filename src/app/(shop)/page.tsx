@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { supabase } from "@/lib/supabase";
 import { HomeProductSection } from "@/components/productos/HomeProductSection";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "TropicalesJW - Productos Tropicales Frescos",
   description: "Descubre nuestra selección de productos tropicales frescos y de la mejor calidad. Envíos a todo el país.",
