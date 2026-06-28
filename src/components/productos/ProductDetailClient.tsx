@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, ShoppingCart, Check } from "lucide-react";
-import { supabase } from "@/lib/supabase";
 import { formatPrice } from "@/lib/utils";
 import { useLocale } from "@/lib/i18n";
 import { ProductDetailSkeleton } from "@/components/ui/ProductDetailSkeleton";
@@ -20,6 +19,7 @@ interface ProductWithCategory {
   images: string;
   stock: number;
   category?: { name: string; slug: string } | null;
+  categoryId?: string;
 }
 
 export function ProductDetailClient({ slug: initialSlug }: { slug: string }) {
@@ -32,32 +32,27 @@ export function ProductDetailClient({ slug: initialSlug }: { slug: string }) {
 
   useEffect(() => {
     async function load() {
-      const { data: prod } = await supabase
-        .from("Product")
-        .select("*, category:Category(*)")
-        .eq("slug", initialSlug)
-        .single();
+      try {
+        const res = await fetch(`/api/productos/${initialSlug}`);
+        if (!res.ok) {
+          router.push("/productos");
+          return;
+        }
+        const prod: ProductWithCategory = await res.json();
+        setProduct(prod);
 
-      if (!prod) {
+        if (prod.category?.slug) {
+          const relRes = await fetch(`/api/productos?categoria=${prod.category.slug}`);
+          const relData: ProductWithCategory[] = await relRes.json();
+          setRelated(relData.filter((r) => r.id !== prod.id).slice(0, 3));
+        }
+      } catch (err) {
+        console.error("Error loading product:", err);
         router.push("/productos");
         return;
+      } finally {
+        setLoading(false);
       }
-
-      setProduct(prod as unknown as ProductWithCategory);
-
-      if (prod.categoryId) {
-        const { data: rel } = await supabase
-          .from("Product")
-          .select("*, category:Category(*)")
-          .eq("categoryId", prod.categoryId)
-          .neq("id", prod.id)
-          .eq("published", true)
-          .limit(3);
-
-        setRelated((rel || []) as unknown as ProductWithCategory[]);
-      }
-
-      setLoading(false);
     }
     load();
   }, [initialSlug, router]);
