@@ -1,0 +1,56 @@
+TROPICALESJW — GUÍA DE DISEÑO
+==============================
+
+PALETA DE COLORES
+-----------------
+Primario (navy):     #0B2545
+Acento (azul):       #0199E4
+Secundario (verde):  #07D781
+
+Fondo claro:         #F8FAFC
+Texto claro:         #1F2937
+Bordes:              #E5E7EB
+
+Fondo oscuro:        #152238
+Texto oscuro:        #F1F5F9
+Acento oscuro:       #5AC8FF
+
+GRADIENTE (encabezados principales)
+------------------------------------
+Modo claro:  #0D8A3F → #B45309  (verde → dorado)
+Modo oscuro: #0FAF4B → #D97706  (verde → dorado)
+
+TIPOGRAFÍA
+----------
+Font-family: 'Segoe UI', system-ui, -apple-system, sans-serif
+(No se usan Google Fonts)
+
+TAMAÑOS DE TEXTO
+-----------------
+Título página:    text-3xl font-bold   (30px)
+Título sección:   text-2xl font-bold   (24px)
+Subtítulo:        text-lg font-semibold (18px)
+Cuerpo:           text-sm / text-base  (14px / 16px)
+Texto pequeño:    text-xs              (12px)
+
+ELEMENTOS DE MARCA
+------------------
+Logo:      126×80px WebP, mostrado a 63×40px con drop-shadow blanco fino
+Favicon:   64×64 PNG (estrella recortada del logo)
+Nombre:    TropicalesJW
+Eslogan:   "Productos tropicales directo a tu hogar"
+
+COMPONENTES VISUALES
+--------------------
+Botones:          rounded-xl, padding x-6 y-3, bg-brand-primary text-white
+Targetas:         rounded-xl, shadow-sm, border border-gray-200, bg-white
+Inputs:           rounded-xl, border border-gray-300, p-3
+Badges:           rounded-full, px-3 py-1, text-xs font-medium
+Skeletons:        animate-pulse, bg-gray-200 rounded-xl
+
+DARK MODE
+---------
+Superficie:       #152238 (bg)
+Texto principal:  #F1F5F9
+Acento adaptado:  #5AC8FF
+Bordes oscuros:   #1E3A5F

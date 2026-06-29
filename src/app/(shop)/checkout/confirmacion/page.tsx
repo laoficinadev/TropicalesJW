@@ -4,7 +4,6 @@ import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { CheckCircle, Package } from "lucide-react";
-import { supabase } from "@/lib/supabase";
 import { formatPrice } from "@/lib/utils";
 import { useLocale } from "@/lib/i18n";
 import { ConfirmacionSkeleton } from "@/components/ui/ConfirmacionSkeleton";
@@ -29,23 +28,17 @@ function ConfirmacionContent() {
     if (!id) return;
 
     async function load() {
-      const { data: orderData } = await supabase
-        .from("Order")
-        .select("*")
-        .eq("id", id)
-        .single();
-
-      if (!orderData) return;
-
-      setOrder(orderData);
-
-      const { data: orderItems } = await supabase
-        .from("OrderItem")
-        .select("*, product:Product(name)")
-        .eq("orderId", id);
-
-      setItems((orderItems || []) as unknown as ItemWithProduct[]);
-      setLoading(false);
+      try {
+        const res = await fetch(`/api/pedidos/${id}`);
+        if (!res.ok) return;
+        const data = await res.json();
+        setOrder(data);
+        setItems(data.items || []);
+      } catch (err) {
+        console.error("Error loading order:", err);
+      } finally {
+        setLoading(false);
+      }
     }
     load();
   }, [id]);

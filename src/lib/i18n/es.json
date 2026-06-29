@@ -159,6 +159,43 @@
     "loginSuccess": "Inicio de sesión exitoso",
     "requiredField": "Este campo es requerido"
   },
+  "newsletter": {
+    "title": "Suscríbete a nuestro boletín",
+    "subtitle": "Recibe ofertas exclusivas y productos de temporada directo a tu correo",
+    "placeholder": "Tu correo electrónico",
+    "button": "Suscribirme",
+    "success": "¡Suscripción exitosa! Gracias por unirte.",
+    "error": "Error al suscribirte. Intenta de nuevo."
+  },
+  "hero": {
+    "slide1Title": "Frescura Tropical",
+    "slide1Sub": "para tu hogar",
+    "slide1Desc": "Productos frescos directamente de la naturaleza a tu mesa",
+    "slide2Title": "Miel Pura",
+    "slide2Sub": "de abejas cubanas",
+    "slide2Desc": "Dulce natural, lleno de sabor y propiedades beneficiosas",
+    "slide3Title": "Especias",
+    "slide3Sub": "que transforman",
+    "slide3Desc": "El toque perfecto para tus recetas favoritas",
+    "cta": "Ver Productos"
+  },
+  "quickView": {
+    "title": "Vista rápida",
+    "close": "Cerrar"
+  },
+  "liveSearch": {
+    "placeholder": "Buscar productos...",
+    "noResults": "No se encontraron productos",
+    "viewAll": "Ver todos los resultados"
+  },
+  "recently": {
+    "title": "Vistos recientemente"
+  },
+  "stock": {
+    "inStock": "En existencia",
+    "lowStock": "Solo {{count}} disponibles",
+    "outOfStock": "Agotado"
+  },
   "orders": {
     "title": "Mis Pedidos",
     "noOrders": "No tienes pedidos aún",

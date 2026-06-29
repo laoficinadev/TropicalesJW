@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Providers } from "@/components/providers";
 import { LocaleProvider } from "@/lib/i18n";
+import { ScrollToTop } from "@/components/ui/ScrollToTop";
 
 export const metadata: Metadata = {
   title: "TropicalesJW - Productos Tropicales",
@@ -34,6 +35,7 @@ export default function RootLayout({
             {children}
           </LocaleProvider>
         </Providers>
+        <ScrollToTop />
       </body>
     </html>
   );

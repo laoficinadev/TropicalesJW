@@ -235,6 +235,11 @@ html.dark .logo-text {
   color: var(--text);
 }
 
+/* Orange for low stock */
+html.dark .bg-orange-100 { background-color: #3B2A1C; }
+html.dark .text-orange-600 { color: #FDBA74; }
+html.dark .bg-orange-500 { background-color: #EA580C; }
+
 /* Admin login */
 html.dark .from-brand-light {
   --tw-gradient-from: var(--primary);

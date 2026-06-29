@@ -159,6 +159,43 @@
     "loginSuccess": "Logged in successfully",
     "requiredField": "This field is required"
   },
+  "newsletter": {
+    "title": "Subscribe to our newsletter",
+    "subtitle": "Receive exclusive offers and seasonal products straight to your inbox",
+    "placeholder": "Your email address",
+    "button": "Subscribe",
+    "success": "Subscription successful! Thanks for joining.",
+    "error": "Error subscribing. Please try again."
+  },
+  "hero": {
+    "slide1Title": "Tropical Freshness",
+    "slide1Sub": "for your home",
+    "slide1Desc": "Fresh products straight from nature to your table",
+    "slide2Title": "Pure Honey",
+    "slide2Sub": "from Cuban bees",
+    "slide2Desc": "Natural sweetness, full of flavor and beneficial properties",
+    "slide3Title": "Spices",
+    "slide3Sub": "that transform",
+    "slide3Desc": "The perfect touch for your favorite recipes",
+    "cta": "View Products"
+  },
+  "quickView": {
+    "title": "Quick View",
+    "close": "Close"
+  },
+  "liveSearch": {
+    "placeholder": "Search products...",
+    "noResults": "No products found",
+    "viewAll": "View all results"
+  },
+  "recently": {
+    "title": "Recently Viewed"
+  },
+  "stock": {
+    "inStock": "In Stock",
+    "lowStock": "Only {{count}} left",
+    "outOfStock": "Out of Stock"
+  },
   "orders": {
     "title": "My Orders",
     "noOrders": "You have no orders yet",

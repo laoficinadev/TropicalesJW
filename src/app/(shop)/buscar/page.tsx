@@ -1,10 +1,9 @@
 "use client";
 
-import { Suspense, useEffect, useState, useCallback } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
 import { Search } from "lucide-react";
-import { supabase } from "@/lib/supabase";
 import { ProductGridSkeleton } from "@/components/ui/ProductGridSkeleton";
 import { useLocale } from "@/lib/i18n";
 
@@ -28,29 +27,27 @@ function BuscarContent() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const search = useCallback(async () => {
-    if (!q) {
-      setProducts([]);
-      setLoading(false);
-      return;
-    }
-
-    setLoading(true);
-    const { data } = await supabase
-      .from("Product")
-      .select("*, category:Category(*)")
-      .eq("published", true)
-      .or(`name.ilike.%${q}%,description.ilike.%${q}%`)
-      .order("createdAt", { ascending: false })
-      .limit(50);
-
-    setProducts((data || []) as unknown as Product[]);
-    setLoading(false);
-  }, [q]);
-
   useEffect(() => {
+    async function search() {
+      if (!q) {
+        setProducts([]);
+        setLoading(false);
+        return;
+      }
+
+      setLoading(true);
+      try {
+        const res = await fetch(`/api/productos?q=${encodeURIComponent(q)}`);
+        const data = await res.json();
+        setProducts(data);
+      } catch (err) {
+        console.error("Error searching products:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
     search();
-  }, [search]);
+  }, [q]);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">

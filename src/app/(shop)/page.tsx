@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { supabase } from "@/lib/supabase";
 import { HomeProductSection } from "@/components/productos/HomeProductSection";
+import { HeroSlider } from "@/components/ui/HeroSlider";
+import { RecentlyViewed } from "@/components/productos/RecentlyViewed";
 
 export const dynamic = "force-dynamic";
 
@@ -22,7 +24,9 @@ export default async function Home() {
 
   return (
     <div className="flex flex-col">
+      <HeroSlider />
       <HomeProductSection categories={categories?.map((c) => ({ name: c.name, slug: c.slug })) || []} />
+      <RecentlyViewed />
     </div>
   );
 }
